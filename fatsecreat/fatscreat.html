@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>fatscreat</title>
+  <link rel="stylesheet" href="css/fatscreat.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+  <!-- 헤더시작 -->
+  <header>
+    <div class="inner_header w1100">
+      <a href="" class="logo"></a>
+      <nav class="gnb">
+        <div id="gnb_bg"></div>
+        <ul>
+          <li class="gnb_menu">
+            <a href="">회사소개</a>
+          </li>
+          <li class="gnb_menu" id="servise">
+            <a href="">서비스</a>
+            <ul class="lnb">
+              <li><a href="">칼로리계산</a></li>
+              <li><a href="">음식</a></li>
+              <li><a href="">요리법</a></li>
+              <li><a href="">신체단련</a></li>
+              <li><a href="">커뮤니티</a></li>
+            </ul>
+          </li>
+          <li class="gnb_menu" id="customer">
+            <a href="">고객지원</a> 
+            <ul class="lnb">
+              <li><a href="">FAQ</a></li>
+              <li><a href="">고객센터</a></li>
+              <li><a href="">공지사항</a></li>
+            </ul> 
+          </li>
+          <li><a href="" class="greenRoundBox">로그인</a></li>
+        </ul>
+      </nav>
+      <div class="m_haberger">
+        <a href="">
+          <span></span>
+          <span></span>
+          <span></span>
+         </a> 
+      </div>
+    </div>
+  </header>
+  <!-- 메인시작 -->
+  <main>
+    <!-- 섹션1 시작 -->
+    <section id="section1">
+      <div class="section1_bg"></div> <!-- 백그라운드 -->
+      <div class="section1_inner w1100"> <!-- 백그라운드 컨텐츠 -->
+        <h1>
+          당신의 성공 비결<br>
+          FATSCREAT
+        </h1>
+        <div class="free_box"><a href="">무료로 시작하기</a></div>
+        <p>이미 회원이십니까? <a href="">로그인</a></p>
+        <h3>
+          사용하기 쉬운 어플,온라인 도구,그리고 친구들의<br>
+          응원을 활용하여 건강한 체중 감량을 시작하세요.
+        </h3>
+        <div class="inner_download">
+          <a href=""><img src="img/ko_get_2.svg" alt=""></a>
+          <a href=""><img src="img/Download_on_the_App_Store_Badge_KR_RGB_blk_100317.svg" alt=""></a>
+        </div>
+      </div>
+    </section>
+    <!-- 섹션2시작 -->
+    <section id="section2">
+      <!-- 섹션2의 메뉴 섹션시작 -->
+      <div class="menu_box">  
+          <ul class="menu_box_cont w1100">
+            <li>
+              <a href="">
+                <div class="box_icon1"></div>
+                <span>칼로리 계산</span>
+                <span>kcal</span>
+              </a>
+            </li>
+            <li>
+              <a href="">
+                <div class="box_icon2"></div>
+                <span>음식</span>
+                <span>food</span>
+              </a>
+            </li>
+            <li>
+              <a href="">
+                <div class="box_icon3"></div>
+                <span>요리법</span>
+                <span>recipe</span>
+              </a>
+            </li>
+            <li>
+              <a href="">
+                <div class="box_icon4"></div>
+                <span>신체단련</span>
+                <span>exercise</span>
+              </a>
+            </li>
+            <li>
+              <a href="">
+                <div class="box_icon5"></div>
+                <span>커뮤니티</span>
+                <span>community</span>
+              </a>
+            </li>
+          </ul>
+      </div>
+      <!-- 섹션2 비만도 계산 -->
+      <div class="calculator">
+        <div class="inner_calc w1100">
+          <!-- 비만도계산 왼쪽 박스 -->
+          <div class="inner_calc_left">
+              <h1>나의 비만도는?</h1>
+              <p>성별정보</p>
+              <form id="weight_form">
+                <div class="gender_box">
+                  <label>
+                    <input type="checkbox">
+                    <span>남성</span>
+                  </label>
+                  <label>
+                    <input type="checkbox">
+                    <span>여성</span>
+                  </label>
+                </div>
+                <p>신체정보</p>
+                <div class="input_box">
+                  <input type="text" placeholder="키를 입력하세요" id="height">
+                  <span>cm</span>
+                </div>
+                <div class="input_box">
+                  <input type="text" placeholder="몸무게를 입력하세요" id="weight">
+                  <span>kg</span>
+                </div>
+                <div class="input_box">
+                  <input type="text" placeholder="나이를 입력하세요" id="age">
+                  <span>age</span>
+                </div>
+                <button class="green_btn" type="submit">계산하기</button>
+              </form>
+          </div>
+          <!-- 비만도계산 오른쪽 박스 -->
+          <div class="inner_calc_right">
+            <p>비만도 결과</p>
+            <div class="result_box">
+              <div class="weight_value">
+                <span>나의 체질량지수는</span>
+                <span class="weight" id="weightCont"></span>
+              </div>
+              <div class="weight_age">
+                <span class="weight" id="weightAgeCon"></span>
+                <span>입니다.</span>
+              </div>
+              <div class="reset_box">
+                <button>초기화하기</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 컨텐츠2 시작 오늘먹은 칼로리? -->
+      <!-- 왼쪽 텍스트 시작 섹션 오른쪽 사진  -->
+      <div class="cont1">
+        <div class="inner_cont w1100">
+          <div class="cont_title">
+            <h4 class="f_green">#오늘먹은_칼로리_계산</h4>
+            <h1>
+              오늘먹은 칼로리가
+              <span>궁금하다면?</span>
+            </h1>
+            <a href="" class="f_green">칼로리 다이어리<span>&nbsp></span></a>
+          </div>
+          <div class="cont_img" data-aos="fade-left">
+            <img src="img/diet-g6e12c2fdb_640.jpg" alt="">  
+          </div>
+        </div>
+      </div>
+      <!-- 섹션 왼쪽 사진 시작 오른쪽 텍스트-->
+      <div class="cont2">
+         <div class="inner_cont w1100 cont2_posi">
+          <div class="cont_img" data-aos="fade-right">
+            <img src="img/salad-g9d2296bba_640.jpg" alt="">  
+          </div>
+          <div class="cont_title">
+            <h4 class="f_green">#식사전_영양소_확인해요</h4>
+            <h1>
+              음식 영양소가
+              <span>궁금하다면?</span>
+            </h1>
+            <a href="" class="f_green">영양소 보러가기<span>&nbsp></span></a>
+          </div>
+        </div>
+      </div>
+      <!-- 왼쪽 텍스트 시작 섹션 오른쪽 사진  -->
+      <div class="cont1">
+        <div class="inner_cont w1100">
+          <div class="cont_title">
+            <h4 class="f_green">#건강한_레시피로_맛있게</h4>
+            <h1>
+              다이어터들의 요리법이
+              <span>궁금하다면?</span>
+            </h1>
+            <a href="" class="f_green">요리법 보러가기<span>&nbsp></span></a>
+          </div>
+          <div class="cont_img" data-aos="fade-left">
+            <img src="img/cook-g9b5f5d4a3_640.jpg" alt="">  
+          </div>
+        </div>
+      </div>
+      <!-- 섹션 왼쪽 사진 시작 오른쪽 텍스트-->
+      <div class="cont2">
+         <div class="inner_cont w1100 cont2_posi">
+          <div class="cont_img" data-aos="fade-right">
+            <img src="img/people-ge942ac954_640.jpg" alt="">  
+          </div>
+          <div class="cont_title">
+            <h4 class="f_green">#오늘운동_뭐하지</h4>
+            <h1>
+              당신에게 맞는 운동이
+              <span>궁금하다면?</span>
+            </h1>
+            <a href="" class="f_green">신체단련 보러가기<span>&nbsp></span></a>
+          </div>
+        </div>
+      </div>
+      <!-- 중간 타이틀 시작 -->
+      <div class="center_title">
+        <img src="img/FS_Logo_SplashScreen_Green.png" alt="">
+        <h1>[팻시크릿]<strong>을 만나다</strong></h1>
+        <h4>팻시크릿을 만나고 <strong>편리함</strong>에 빠지다</h4>
+      </div>
+      <!-- 팻시크릿 사용법 섹션 시작 -->
+      <div class="useruse">
+        <div class="inner_useruse w1100">
+          <ul>
+            <li>
+              <div><img src="img/free-icon-data-protection-2597551 (2).png" alt=""></div>
+              <p>
+                팻시크릿 회원가입에서<br>
+                내 신체정보 기재
+              </p>
+            </li>
+            <li>
+              <div><img src="img/free-icon-body-scan-2818132.png" alt=""></div>
+              <p>
+                회원가입 완료후<br>
+                목표 몸무게 기재
+              </p>
+            </li>
+            <li>
+              <div><img src="img/free-icon-referral-3414778.png" alt=""></div>
+              <p>
+                기재한 정보를 통해 운동 및<br>
+                권장칼로리 추천
+              </p>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- 팻시크릿 커뮤니티 섹션 -->
+      <div class="community_sec">
+        <div class="com_sec_inner w1100">
+          <h1 class="common_title">팻시크릿 커뮤니티</h1>
+          <div class="title_sub">
+            <p>다이어트 경험을 공유하세요!</p>
+            <div class="t_sub_more">
+              <a href="">더 알아보기<span>&nbsp></span></a>
+            </div>
+          </div>
+          <ul class="com_list">
+            <li class="commu_list_cont">
+              <a href="">
+                <div class="commu_img1"></div>
+                <h4>아침:말차스콘1/2+슈퍼잼,자색고구마라떼(아브프로틴 + 식빵</h4>
+              </a>
+              <div class="commu_uinfo">
+                <a href="">
+                  <div class="uinfo_img1"></div>
+                  <p>khj-016(밥반선생)</p>
+                </a>
+              </div>
+            </li>
+            <li class="commu_list_cont">
+              <a href="">
+                <div class="commu_img2"></div>
+                <h4>수영 50분 상급✌️</h4>
+              </a>
+              <div class="commu_uinfo">
+                <a href="">
+                  <div class="uinfo_img2"></div>
+                  <p>HOWTDAY</p>
+                </a>
+              </div>
+            </li>
+            <li class="commu_list_cont">
+              <a href="">
+                <div class="commu_img3"></div> 
+                <h4>대략 535kcal오늘도 새벽 3시 30분 기상 후 아침식사!!</h4>
+              </a>
+              <div class="commu_uinfo">
+                <a href="">
+                  <div class="uinfo_img3"></div>
+                  <p>Bebefleur</p>
+                </a>
+              </div>
+            </li>
+          </ul>
+          <div class="hide_more"><a href="">더 많은 커뮤니티 보러가기</a></div>
+         </div> 
+      </div>
+      <!-- 문의사항 섹션 -->
+      <div class="qustions_sec">
+        <div class="qustions_inner w1100">
+          <h1 class="common_title">문의사항</h1>
+          <div class="title_sub">
+            <p>문의하실 사항은 여기를 참고해주세요</p>
+          </div>
+          <ul class="qustions_list">
+            <li>
+              <a href="">
+                  <h3>악용사례 문의</h3>
+                  <h5>악용사례 신고 문의</h5>
+                  <div class="qustions_more">더 알아보기</div>
+                  <img src="img/free-icon-malware-1000988.png" alt="">
+              </a>
+            </li>
+            <li>
+              <a href="">
+                  <h3>고객 문의</h3>
+                  <h5>서비스 이용 문의</h5>
+                  <div class="qustions_more">더 알아보기</div>
+                  <img src="img/free-icon-customer-3126649.png" alt="">
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer></footer>
+</body>
+<script src="js/fatscreat.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+          <script>
+            AOS.init();
+          </script>
+</html>
