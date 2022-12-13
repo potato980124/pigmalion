@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,7 +9,14 @@
   <link rel="stylesheet" href="css/fatscreat.css">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
+
 <body>
+  <!-- 페이지 상단 이동 버튼 -->
+  <div class="page_up">
+    <div class="page_up_img"></div>
+    <p>TOP</p>
+  </div>
+  <script src="js/pageup.js"></script>
   <!-- 헤더시작 -->
   <header>
     <div id="gnb_bg"></div>
@@ -21,11 +29,7 @@
               <span class="g_under_line"></span>
             </a>
             <ul class="lnb">
-              <li><a href="">칼로리계산</a></li>
-              <li><a href="">음식</a></li>
-              <li><a href="">요리법</a></li>
-              <li><a href="">신체단련</a></li>
-              <li><a href="">커뮤니티</a></li>
+              <li><a href="">팻스토리</a></li>
             </ul>
           </li>
           <li class="gnb_menu">
@@ -33,7 +37,7 @@
               <span class="g_under_line"></span>
             </a>
             <ul class="lnb second_lnb">
-              <li><a href="">칼로리계산</a></li>
+              <li><a href="">칼로리 다이어리</a></li>
               <li><a href="">음식</a></li>
               <li><a href="">요리법</a></li>
               <li><a href="">신체단련</a></li>
@@ -43,12 +47,12 @@
           <li class="gnb_menu">
             <a href="">고객지원
               <span class="g_under_line"></span>
-            </a> 
+            </a>
             <ul class="lnb last_lnb">
               <li><a href="">FAQ</a></li>
               <li><a href="">고객센터</a></li>
               <li><a href="">공지사항</a></li>
-            </ul> 
+            </ul>
           </li>
           <li><a href="" class="greenRoundBox">로그인</a></li>
         </ul>
@@ -58,7 +62,7 @@
           <span></span>
           <span></span>
           <span></span>
-         </a> 
+        </a>
       </div>
     </div>
   </header>
@@ -67,7 +71,8 @@
     <!-- 섹션1 시작 -->
     <section id="section1">
       <div class="section1_bg"></div> <!-- 백그라운드 -->
-      <div class="section1_inner w1100"> <!-- 백그라운드 컨텐츠 -->
+      <div class="section1_inner w1100">
+        <!-- 백그라운드 컨텐츠 -->
         <h1>
           당신의 성공 비결<br>
           FATSCREAT
@@ -87,78 +92,120 @@
     <!-- 섹션2시작 -->
     <section id="section2">
       <!-- 섹션2의 메뉴 섹션시작 -->
-      <div class="menu_box">  
-          <ul class="menu_box_cont w1100">
+      <div class="menu_box">
+        <!-- 모바일 메뉴박스 -->
+        <div class="m_menu_box w1100">
+          <div class="m_menu_box_wrap">
+            <p>MENU BAR</p>
+            <div class="m_menu_bar_btn">
+              <div></div>
+              <div id="m_menu_bar_btn2"></div>
+            </div>
+          </div>
+          <ul class="m_menu_cont">
             <li>
               <a href="">
-                <div class="box_icon1"></div>
-                <span>칼로리 계산</span>
-                <span>kcal</span>
+                <p class="m_menu_title">칼로리 다이어리</p>
+                <div class="m_menu_bar_plus"></div>
               </a>
             </li>
             <li>
               <a href="">
-                <div class="box_icon2"></div>
-                <span>음식</span>
-                <span>food</span>
+                <p class="m_menu_title">음식</p>
+                <div class="m_menu_bar_plus"></div>
               </a>
             </li>
             <li>
               <a href="">
-                <div class="box_icon3"></div>
-                <span>요리법</span>
-                <span>recipe</span>
+                <p class="m_menu_title">요리법</p>
+                <div class="m_menu_bar_plus"></div>
               </a>
             </li>
             <li>
               <a href="">
-                <div class="box_icon4"></div>
-                <span>신체단련</span>
-                <span>exercise</span>
+                <p class="m_menu_title">신체단련</p>
+                <div class="m_menu_bar_plus"></div>
               </a>
             </li>
             <li>
               <a href="">
-                <div class="box_icon5"></div>
-                <span>커뮤니티</span>
-                <span>community</span>
+                <p class="m_menu_title">커뮤니티</p>
+                <div class="m_menu_bar_plus"></div>
               </a>
             </li>
           </ul>
+        </div>
+        <ul class="menu_box_cont w1100">
+          <li>
+            <a href="">
+              <div class="box_icon1"></div>
+              <span>칼로리 계산</span>
+              <span>kcal</span>
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <div class="box_icon2"></div>
+              <span>음식</span>
+              <span>food</span>
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <div class="box_icon3"></div>
+              <span>요리법</span>
+              <span>recipe</span>
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <div class="box_icon4"></div>
+              <span>신체단련</span>
+              <span>exercise</span>
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <div class="box_icon5"></div>
+              <span>커뮤니티</span>
+              <span>community</span>
+            </a>
+          </li>
+        </ul>
       </div>
       <!-- 섹션2 비만도 계산 -->
       <div class="calculator">
         <div class="inner_calc w1100">
           <!-- 비만도계산 왼쪽 박스 -->
           <div class="inner_calc_left">
-              <h1>나의 비만도는?</h1>
-              <p>성별정보</p>
-              <form id="weight_form">
-                <div class="gender_box">
-                  <label>
-                    <input type="checkbox">
-                    <span>남성</span>
-                  </label>
-                  <label>
-                    <input type="checkbox">
-                    <span>여성</span>
-                  </label>
-                </div>
-                <p>신체정보</p>
-                <div class="input_box">
-                  <input type="text" placeholder="키를 입력하세요" id="height">
-                  <span>cm</span>
-                </div>
-                <div class="input_box">
-                  <input type="text" placeholder="몸무게를 입력하세요" id="weight">
-                  <span>kg</span>
-                </div>
-                <div class="input_box">
-                  <input type="text" placeholder="나이를 입력하세요" id="age">
-                  <span>age</span>
-                </div>
-                <button class="green_btn" type="submit">계산하기</button>
-              </form>
+            <h1>나의 비만도는?</h1>
+            <p>성별정보</p>
+            <form id="weight_form">
+              <div class="gender_box">
+                <label>
+                  <input type="checkbox">
+                  <span>남성</span>
+                </label>
+                <label>
+                  <input type="checkbox">
+                  <span>여성</span>
+                </label>
+              </div>
+              <p>신체정보</p>
+              <div class="input_box">
+                <input type="text" placeholder="키를 입력하세요" id="height">
+                <span>cm</span>
+              </div>
+              <div class="input_box">
+                <input type="text" placeholder="몸무게를 입력하세요" id="weight">
+                <span>kg</span>
+              </div>
+              <div class="input_box">
+                <input type="text" placeholder="나이를 입력하세요" id="age">
+                <span>age</span>
+              </div>
+              <button class="green_btn" type="submit">계산하기</button>
+            </form>
           </div>
           <!-- 비만도계산 오른쪽 박스 -->
           <div class="inner_calc_right">
@@ -192,15 +239,15 @@
             <a href="" class="f_green">칼로리 다이어리<span>&nbsp></span></a>
           </div>
           <div class="cont_img" data-aos="fade-left">
-            <img src="img/diet-g6e12c2fdb_640.jpg" alt="">  
+            <img src="img/diet-g6e12c2fdb_640.jpg" alt="">
           </div>
         </div>
       </div>
       <!-- 섹션 왼쪽 사진 시작 오른쪽 텍스트-->
       <div class="cont2">
-         <div class="inner_cont w1100 cont2_posi">
+        <div class="inner_cont w1100 cont2_posi">
           <div class="cont_img" data-aos="fade-right">
-            <img src="img/salad-g9d2296bba_640.jpg" alt="">  
+            <img src="img/salad-g9d2296bba_640.jpg" alt="">
           </div>
           <div class="cont_title">
             <h4 class="f_green">#식사전_영양소_확인해요</h4>
@@ -224,15 +271,15 @@
             <a href="" class="f_green">요리법 보러가기<span>&nbsp></span></a>
           </div>
           <div class="cont_img" data-aos="fade-left">
-            <img src="img/cook-g9b5f5d4a3_640.jpg" alt="">  
+            <img src="img/cook-g9b5f5d4a3_640.jpg" alt="">
           </div>
         </div>
       </div>
       <!-- 섹션 왼쪽 사진 시작 오른쪽 텍스트-->
       <div class="cont2">
-         <div class="inner_cont w1100 cont2_posi">
+        <div class="inner_cont w1100 cont2_posi">
           <div class="cont_img" data-aos="fade-right">
-            <img src="img/people-ge942ac954_640.jpg" alt="">  
+            <img src="img/people-ge942ac954_640.jpg" alt="">
           </div>
           <div class="cont_title">
             <h4 class="f_green">#오늘운동_뭐하지</h4>
@@ -315,7 +362,7 @@
             </li>
             <li class="commu_list_cont">
               <a href="">
-                <div class="commu_img3"></div> 
+                <div class="commu_img3"></div>
                 <h4>대략 535kcal오늘도 새벽 3시 30분 기상 후 아침식사!!</h4>
               </a>
               <div class="commu_uinfo">
@@ -327,7 +374,7 @@
             </li>
           </ul>
           <div class="hide_more"><a href="">더 많은 커뮤니티 보러가기</a></div>
-         </div> 
+        </div>
       </div>
       <!-- 문의사항 섹션 -->
       <div class="qustions_sec">
@@ -339,18 +386,18 @@
           <ul class="qustions_list">
             <li>
               <a href="">
-                  <h3>악용사례 문의</h3>
-                  <h5>악용사례 신고 문의</h5>
-                  <div class="qustions_more">더 알아보기</div>
-                  <img src="img/free-icon-malware-1000988.png" alt="">
+                <h3>악용사례 문의</h3>
+                <h5>악용사례 신고 문의</h5>
+                <div class="qustions_more">더 알아보기</div>
+                <img src="img/free-icon-malware-1000988.png" alt="">
               </a>
             </li>
             <li>
               <a href="">
-                  <h3>고객 문의</h3>
-                  <h5>서비스 이용 문의</h5>
-                  <div class="qustions_more">더 알아보기</div>
-                  <img src="img/free-icon-customer-3126649.png" alt="">
+                <h3>고객 문의</h3>
+                <h5>서비스 이용 문의</h5>
+                <div class="qustions_more">더 알아보기</div>
+                <img src="img/free-icon-customer-3126649.png" alt="">
               </a>
             </li>
           </ul>
@@ -362,7 +409,8 @@
 </body>
 <script src="js/fatscreat.js"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-          <script>
-            AOS.init();
-          </script>
+<script>
+  AOS.init();
+</script>
+
 </html>
