@@ -29,6 +29,21 @@ gnb.forEach((e,index)=>{
       },500)
     })
 })
+// 헤더 모바일 햄버거 
+let hamBtn = document.querySelector('.m_hamberger');
+let mobileHeader = document.querySelector('.h_m_menu_wrap');
+let line1 = document.querySelector('.line1');
+let line2 = document.querySelector('.line2');
+let line3 = document.querySelector('.line3');
+
+
+hamBtn.addEventListener('click',()=>{
+  mobileHeader.classList.toggle('h_m_open');
+  line1.classList.toggle('h_m_line1_cross');
+  line2.classList.toggle('h_m_line_out');
+  line3.classList.toggle('h_m_line3_cross');
+  hamBtn.classList.toggle('m_hamberger_translate');
+})
 
 
 /* 모바일 메뉴박스 아코디언  */
