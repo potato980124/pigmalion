@@ -35,6 +35,7 @@ let mobileHeader = document.querySelector('.h_m_menu_wrap');
 let line1 = document.querySelector('.line1');
 let line2 = document.querySelector('.line2');
 let line3 = document.querySelector('.line3');
+let indexBody = document.getElementsByTagName('body');
 
 
 hamBtn.addEventListener('click',()=>{
@@ -43,6 +44,13 @@ hamBtn.addEventListener('click',()=>{
   line2.classList.toggle('h_m_line_out');
   line3.classList.toggle('h_m_line3_cross');
   hamBtn.classList.toggle('m_hamberger_translate');
+  console.log(indexBody[0].style);
+  console.log(indexBody[0].style.length);
+  if(indexBody[0].style.length == 0){
+    indexBody[0].style.overflow = 'hidden';
+  }else{
+    indexBody[0].style.overflow = '';
+  }
 })
 
 

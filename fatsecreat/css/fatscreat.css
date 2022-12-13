@@ -33,7 +33,7 @@ body {
 .h_m_open {
   transform: translateX(30px);
   border-radius: 0% 0% 0% 0%;
-  background-color: rgba(145, 207, 0, 100%);
+  background-color: rgba(164, 65, 65, 100%);
 }
 
 /* 햄버거 버튼 헤더 안에 위치함 */
@@ -41,13 +41,13 @@ body {
   display: none;
   position: absolute;
   z-index: 3;
-  right: 30px;
+  right: 30px; /* 이너헤더 패딩값 만큼 띄어주가 */
   transform: translateX(0);
   transition: all 1s;
 }
 
 .m_hamberger_translate {
-  transform: translateX(-200px);
+  transform: translateX(-230px);
 }
 
 .m_hamberger span {
@@ -66,7 +66,7 @@ body {
 
 .h_m_line1_cross {
   width: 30px !important;
-  transform: rotate(45deg) translateY(16px) !important;
+  transform: rotate(45deg) translateY(17px) !important;
 }
 
 .m_hamberger>.line2 {
@@ -87,7 +87,7 @@ body {
 
 .h_m_line3_cross {
   width: 30px !important;
-  transform: rotate(-45deg) translateY(-16px) !important;
+  transform: rotate(-45deg) translateY(-17px) !important;
 }
 
 /* 페이지 상단 이동 버튼 */
