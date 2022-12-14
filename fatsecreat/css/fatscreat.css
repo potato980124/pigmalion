@@ -35,6 +35,57 @@ body {
   border-radius: 0% 0% 0% 0%;
   background-color: rgba(164, 65, 65, 100%);
 }
+/* 모바일 메뉴 gnb */
+.h_m_menu_wrap>ul{
+  padding: 150px 50px;
+  box-sizing: border-box;
+}
+.h_m_menu_wrap>ul>li{
+  margin-top: 50px;
+  padding-bottom: 20px;
+  box-sizing: border-box;
+  border-bottom: 1px solid rgba(252, 252, 252, 0.5);
+}
+.h_m_menu_wrap>ul>li{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;  
+  font-size: 20px; font-weight: 600; color: #fff;
+}
+.h_m_menu_wrap>ul>li::after{
+  display: block;
+  content: '';
+  width: 25px; height: 25px;
+  background-image: url(../img/m_menubar_add.png);
+  background-size: cover;
+}
+/* 모바일메뉴 gnb home */
+.h_m_menu_wrap>ul>li:nth-child(1)>a{
+  color: #fff;
+}
+.h_m_menu_wrap>ul>li:nth-child(1)::after{
+  background-image: url(../img/m_menu_home.png);
+}
+
+/* 모바일메뉴 lnb  */
+.m_menu_lnb{
+  padding: 0 10px;
+  box-sizing: border-box;
+  max-height: 0;
+  overflow-y: hidden;
+}
+.m_menu_lnb>li{
+  margin: 20px 0;
+}
+.m_menu_lnb>li>a{
+  font-size: 18px;font-weight: bold; color: rgba(252, 252, 253, 0.9);
+}
+
+
+
+
+
 
 /* 햄버거 버튼 헤더 안에 위치함 */
 .m_hamberger {
@@ -64,9 +115,9 @@ body {
   transform: rotate(0) translateY(0);
 }
 
-.h_m_line1_cross {
-  width: 30px !important;
-  transform: rotate(45deg) translateY(17px) !important;
+.m_hamberger>.h_m_line1_cross {
+  width: 30px;
+  transform: rotate(45deg) translateY(17px) ;
 }
 
 .m_hamberger>.line2 {
@@ -74,10 +125,10 @@ body {
   transform: translateX(0);
 }
 
-.h_m_line_out {
-  width: 28px !important;
-  transform: translateX(30px) !important;
-  opacity: 0 !important;
+.m_hamberger>.h_m_line_out {
+  width: 28px ;
+  transform: translateX(30px) ;
+  opacity: 0 ;
 }
 
 .m_hamberger>.line3 {
@@ -85,9 +136,9 @@ body {
   transform: rotate(0) translateY(0);
 }
 
-.h_m_line3_cross {
-  width: 30px !important;
-  transform: rotate(-45deg) translateY(-17px) !important;
+.m_hamberger>.h_m_line3_cross {
+  width: 30px ;
+  transform: rotate(-45deg) translateY(-17px) ;
 }
 
 /* 페이지 상단 이동 버튼 */

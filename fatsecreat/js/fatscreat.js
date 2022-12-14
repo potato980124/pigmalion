@@ -44,8 +44,8 @@ hamBtn.addEventListener('click',()=>{
   line2.classList.toggle('h_m_line_out');
   line3.classList.toggle('h_m_line3_cross');
   hamBtn.classList.toggle('m_hamberger_translate');
-  console.log(indexBody[0].style);
-  console.log(indexBody[0].style.length);
+  // console.log(indexBody[0].style);
+  // console.log(indexBody[0].style.length);
   if(indexBody[0].style.length == 0){
     indexBody[0].style.overflow = 'hidden';
   }else{
@@ -53,8 +53,27 @@ hamBtn.addEventListener('click',()=>{
   }
 })
 
+// 모바일 헤더 메뉴 아코디언
+let mMenuGnb = document.querySelectorAll('.m_menu_gnb');
 
-/* 모바일 메뉴박스 아코디언  */
+mMenuGnb.forEach((e)=>{
+  e.addEventListener('click',clickMgnb(e));
+})
+
+function clickMgnb(e){
+  return ()=>{
+    if(e.nextElementSibling.style.maxHeight){
+      e.nextElementSibling.style.maxHeight = null;
+    }else{
+      for(i=0;i < mMenuGnb.length;i++){
+        mMenuGnb[i].nextElementSibling.style.maxHeight = null;
+      }
+      e.nextElementSibling.style.maxHeight = '400px';
+    }
+  };
+  }
+
+/* 모바일 메뉴박스 섹션 아코디언  */
 
 let plusBtn = document.querySelector('.m_menu_box_wrap');
 let lotateMinus = document.querySelector('#m_menu_bar_btn2');
