@@ -8,27 +8,34 @@ let gnbUnderline = document.querySelectorAll('.g_under_line');
 gnb.forEach((e,index)=>{
   e.addEventListener('mouseenter',()=>{
     setTimeout(()=>{
-      lnb[index].style.display = 'flex';
       gnbUnderline[index].style.width = '100%';
-      gnbBg.style.height = '170px';
       e.firstElementChild.style.color = '#91CF00';
     },300);
-    setTimeout(()=>{
-      lnb[index].style.opacity = '1';
-    },500)
   });
     e.addEventListener('mouseleave',()=>{
       setTimeout(()=>{
-          lnb[index].style.display = 'none';
           gnbUnderline[index].style.width = '0';
-          gnbBg.style.height = '0';
           e.firstElementChild.style.color = '#ddd';
       },300);
-      setTimeout(()=>{
-        lnb[index].style.opacity = '0';
-      },500)
     })
 })
+
+//헤더 드롭 
+let header = document.querySelector('header');
+let headerHeight = header.offsetHeight;
+
+window.onscroll = function () {
+  let windowTop = window.scrollY;
+  	// 스크롤 세로값이 헤더높이보다 크거나 같으면 
+	// 헤더에 클래스 'drop'을 추가한다
+  if (windowTop >= headerHeight) {
+    header.classList.add("header_drop");
+  } 
+  // 아니면 클래스 'drop'을 제거
+  else {
+    header.classList.remove("header_drop");
+  }
+};
 // 헤더 모바일 햄버거 
 let hamBtn = document.querySelector('.m_hamberger');
 let mobileHeader = document.querySelector('.h_m_menu_wrap');
