@@ -89,11 +89,11 @@
             <form id="weight_form">
               <div class="gender_box">
                 <label>
-                  <input type="checkbox">
+                  <input type="checkbox" name="sex" value="male" onclick="checkOnlyOne(this)">
                   <span>남성</span>
                 </label>
                 <label>
-                  <input type="checkbox">
+                  <input type="checkbox" name="sex" value="female" onclick="checkOnlyOne(this)">
                   <span>여성</span>
                 </label>
               </div>
@@ -110,7 +110,7 @@
                 <input type="text" placeholder="나이를 입력하세요" id="age">
                 <span>age</span>
               </div>
-              <button class="green_btn" type="submit">계산하기</button>
+              <button class="green_btn" type="button">계산하기</button>
             </form>
           </div>
           <!-- 비만도계산 오른쪽 박스 -->

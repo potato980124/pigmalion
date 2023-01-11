@@ -61,24 +61,24 @@ hamBtn.addEventListener('click',()=>{
 })
 
 // 모바일 헤더 메뉴 아코디언
-let mMenuGnb = document.querySelectorAll('.m_menu_gnb');
+// let mMenuGnb = document.querySelectorAll('.m_menu_gnb');
 
-mMenuGnb.forEach((e)=>{
-  e.addEventListener('click',clickMgnb(e));
-})
+// mMenuGnb.forEach((e)=>{
+//   e.addEventListener('click',clickMgnb(e));
+// })
 
-function clickMgnb(e){
-  return ()=>{
-    if(e.nextElementSibling.style.maxHeight){
-      e.nextElementSibling.style.maxHeight = null;
-    }else{
-      for(i=0;i < mMenuGnb.length;i++){
-        mMenuGnb[i].nextElementSibling.style.maxHeight = null;
-      }
-      e.nextElementSibling.style.maxHeight = '400px';
-    }
-  };
-  }
+// function clickMgnb(e){
+//   return ()=>{
+//     if(e.nextElementSibling.style.maxHeight){
+//       e.nextElementSibling.style.maxHeight = null;
+//     }else{
+//       for(i=0;i < mMenuGnb.length;i++){
+//         mMenuGnb[i].nextElementSibling.style.maxHeight = null;
+//       }
+//       e.nextElementSibling.style.maxHeight = '400px';
+//     }
+//   };
+//   }
 
 /* 모바일 메뉴박스 섹션 아코디언  */
 
@@ -94,34 +94,36 @@ plusBtn.addEventListener('click',()=>{
 
 
 // 비만도 계산기
+let sex = document.getElementsByName('sex');
 let height = document.querySelector('#height');
 let weight = document.querySelector('#weight');
 let age = document.querySelector('#age');
-let buttonCalc = document.querySelector('.green_btn');
-let heightV;
-let weightV;
-let bmi;
-height.addEventListener('input', (event) => {
-  heightV = event.target.value;
-  console.log(heightV);
-})
-weight.addEventListener('input', (event) => {
-  weightV = event.target.value;
-  console.log(weightV);
-})
-buttonCalc.addEventListener('click', onCalc);
-function onCalc(e) {
-  bmi = weightV / ((heightV / 100) * (heightV / 100));
-  let weightCont = document.querySelector('#weightCont');
-  weightCont.innerText = bmi.toFixed(3);
-  let weightAgeCon = document.querySelector('#weightAgeCon');
-  if (bmi > 20) {
-    weightAgeCon.innerText = '비만입니다.'
-  } else {
-    weightAgeCon.innerText = '비만이 아닙니다.'
-  }
-  e.preventDefault(); // 안 써 주면 자동으로 다음 인풋값이 들어간다 다음 인풋값은 입력이 안 되었기 때문에 새로고침이 된다
+let clickBtn = document.querySelector('.green_btn');
+let weightCont = document.querySelector('#weightCont');
+let weightAgeCon = document.querySelector('#weightAgeCon');
+//체크박스 ->하나만 선택 -> 성별 별 bmi지수 계산
+function checkOnlyOne(ele){
+  let checkboxes = document.getElementsByName('sex');
+  checkboxes.forEach((all) => {
+    all.checked = false;
+  })
+  ele.checked = true;
 }
+
+clickBtn.addEventListener('click', () => {
+  let bmi = weight.value / (height.value * height.value); 
+  sex.forEach((val) => {
+    if (val == "male") {
+      weightCont.innerHTML = bmi;
+    }
+  })
+})
+
+
+
+
+
+
 
 
 
