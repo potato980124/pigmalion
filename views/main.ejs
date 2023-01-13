@@ -53,6 +53,12 @@
                 <div class="m_menu_bar_plus"></div>
               </a>
             </li>
+            <li>
+              <a href="">
+                <p class="m_menu_title">커뮤니티</p>
+                <div class="m_menu_bar_plus"></div>
+              </a>
+            </li>
           </ul>
         </div>
         <ul class="menu_box_cont w1100">
@@ -72,8 +78,15 @@
           </li>
           <li>
             <a href="">
-              <div class="box_icon5"></div>
-              <span>커뮤니티</span>
+              <div class="box_icon3"></div>
+              <span>식단일지</span>
+              <span>community</span>
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <div class="box_icon4"></div>
+              <span>레시피</span>
               <span>community</span>
             </a>
           </li>
@@ -99,7 +112,7 @@
               </div>
               <p>신체정보</p>
               <div class="input_box">
-                <input type="text" placeholder="키를 입력하세요" id="height">
+                <input type="text" placeholder="신장을 입력하세요" id="height">
                 <span>cm</span>
               </div>
               <div class="input_box">
@@ -111,6 +124,7 @@
                 <span>age</span>
               </div>
               <button class="green_btn" type="button">계산하기</button>
+              <p id="warn_empty"></p>
             </form>
           </div>
           <!-- 비만도계산 오른쪽 박스 -->
@@ -126,7 +140,7 @@
                 <span>입니다.</span>
               </div>
               <div class="reset_box">
-                <button>초기화하기</button>
+                <button id="calc_reset" type="reset">초기화하기</button>
               </div>
             </div>
           </div>
@@ -135,24 +149,24 @@
       <!-- 컨텐츠2 시작 오늘먹은 칼로리? -->
       <!-- 왼쪽 텍스트 시작 섹션 오른쪽 사진  -->
       <div class="cont1">
-        <div class="inner_cont w1100">
+        <div class="inner_cont m1 w1100">
           <div class="cont_title">
             <h4 class="f_green">#오늘먹은_칼로리_계산</h4>
             <h1>
               오늘먹은 칼로리가
               <span>궁금하다면?</span>
             </h1>
-            <a href="" class="f_green">칼로리 다이어리<span>&nbsp></span></a>
+            <a href="" class="f_green">칼로리 캘린더<span>&nbsp></span></a>
           </div>
-          <div class="cont_img" data-aos="fade-left">
+          <div class="cont_img" data-aos="fade-left" data-aos-duration="500" data-aos-easing="ease-in-sine">
             <img src="img/diet-g6e12c2fdb_640.jpg" alt="">
           </div>
         </div>
       </div>
       <!-- 섹션 왼쪽 사진 시작 오른쪽 텍스트-->
       <div class="cont2">
-        <div class="inner_cont w1100 cont2_posi">
-          <div class="cont_img" data-aos="fade-right">
+        <div class="inner_cont w1100">
+          <div class="cont_img" data-aos="fade-right" data-aos-duration="500" data-aos-easing="ease-in-sine">
             <img src="img/salad-g9d2296bba_640.jpg" alt="">
           </div>
           <div class="cont_title">
@@ -165,43 +179,11 @@
           </div>
         </div>
       </div>
-      <!-- 왼쪽 텍스트 시작 섹션 오른쪽 사진  -->
-      <div class="cont1">
-        <div class="inner_cont w1100">
-          <div class="cont_title">
-            <h4 class="f_green">#건강한_레시피로_맛있게</h4>
-            <h1>
-              다이어터들의 요리법이
-              <span>궁금하다면?</span>
-            </h1>
-            <a href="" class="f_green">요리법 보러가기<span>&nbsp></span></a>
-          </div>
-          <div class="cont_img" data-aos="fade-left">
-            <img src="img/cook-g9b5f5d4a3_640.jpg" alt="">
-          </div>
-        </div>
-      </div>
-      <!-- 섹션 왼쪽 사진 시작 오른쪽 텍스트-->
-      <div class="cont2">
-        <div class="inner_cont w1100 cont2_posi">
-          <div class="cont_img" data-aos="fade-right">
-            <img src="img/people-ge942ac954_640.jpg" alt="">
-          </div>
-          <div class="cont_title">
-            <h4 class="f_green">#오늘운동_뭐하지</h4>
-            <h1>
-              당신에게 맞는 운동이
-              <span>궁금하다면?</span>
-            </h1>
-            <a href="" class="f_green">신체단련 보러가기<span>&nbsp></span></a>
-          </div>
-        </div>
-      </div>
       <!-- 중간 타이틀 시작 -->
       <div class="center_title">
-        <img src="img/FS_Logo_SplashScreen_Green.png" alt="">
-        <h1>[팻시크릿]<strong>을 만나다</strong></h1>
-        <h4>팻시크릿을 만나고 <strong>편리함</strong>에 빠지다</h4>
+        <img src="img/피그말리온가로로고2.png" alt="">
+        <h1>[피그말리온]<strong>을 만나다</strong></h1>
+        <h4>피그말리온을 만나고 <strong>편리함</strong>에 빠지다</h4>
       </div>
       <!-- 팻시크릿 사용법 섹션 시작 -->
       <div class="useruse">
@@ -244,7 +226,9 @@
           <ul class="com_list">
             <li class="commu_list_cont">
               <a href="">
-                <div class="commu_img1"></div>
+                <div class="commu_img_wrap">
+                  <div class="commu_img1"></div>
+                </div>
                 <h4>아침:말차스콘1/2+슈퍼잼,자색고구마라떼(아브프로틴 + 식빵</h4>
               </a>
               <div class="commu_uinfo">
@@ -256,7 +240,9 @@
             </li>
             <li class="commu_list_cont">
               <a href="">
-                <div class="commu_img2"></div>
+                <div class="commu_img_wrap">
+                  <div class="commu_img2"></div>
+                </div>
                 <h4>수영 50분 상급✌️</h4>
               </a>
               <div class="commu_uinfo">
@@ -268,7 +254,9 @@
             </li>
             <li class="commu_list_cont">
               <a href="">
-                <div class="commu_img3"></div>
+                <div class="commu_img_wrap">
+                  <div class="commu_img3"></div>
+                </div>
                 <h4>대략 535kcal오늘도 새벽 3시 30분 기상 후 아침식사!!</h4>
               </a>
               <div class="commu_uinfo">
@@ -292,6 +280,10 @@
           <ul class="qustions_list">
             <li>
               <a href="">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
                 <h3>악용사례 문의</h3>
                 <h5>악용사례 신고 문의</h5>
                 <div class="qustions_more">더 알아보기</div>
@@ -300,6 +292,10 @@
             </li>
             <li>
               <a href="">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
                 <h3>고객 문의</h3>
                 <h5>서비스 이용 문의</h5>
                 <div class="qustions_more">더 알아보기</div>
