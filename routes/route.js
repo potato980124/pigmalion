@@ -35,7 +35,7 @@ router.get('/', (req, res) => {
 router.get('/login', (req, res) => {
      if(req.session.is_logined == true){
         res.render('login',{
-            is_logined : req.session.is_logined,
+            is_logined: req.session.is_logined,
         });
     }else{
         res.render('login',{
@@ -79,9 +79,13 @@ router.post('/loginCheck', (req, res) => {
     let id = param["id"];
     let pw = param["pw"];
     db.loginCheck(id, pw, (results) => {
-        console.log(results);
+        console.log(results[0].cWeight);
         if (results.length > 0) {
             req.session.is_logined = true;
+            req.session.id = results[0].id;
+            req.session.pw = results[0].pw;
+            req.session.cWeight = results[0].cWeight;
+            req.session.tWeight = results[0].tWeight;
             res.redirect('/');
         } else {
             res.send(`<script>alert('로그인 정보가 일치하지 않습니다.'); document.location.href='/login';</script>`)
@@ -92,9 +96,12 @@ router.post('/loginCheck', (req, res) => {
 
 //칼로리 달력 페이지 
 router.get('/calendar', (req, res) => {
+    console.log(req.session.is_logined);
     if(req.session.is_logined == true){
         res.render('calendar',{
             is_logined : req.session.is_logined,
+            cWeight : req.session.cWeight,
+            tWeight : req.session.tWeight
         });
     }else{
         res.send(`<script>alert('로그인이 필요한 서비스입니다.'); document.location.href='/login';</script>`)

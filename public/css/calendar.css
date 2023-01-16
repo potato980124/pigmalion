@@ -1,15 +1,52 @@
 .calendar{
-    height: 900px;
+    height: 1100px;
     padding-top: 200px;
 }
-.processbox_wrap{
+.calendar .processbox_wrap{
     width: 100%;
     display: flex;
-    justify-content: right;
+    flex-direction: column;
+    align-items: flex-end;
 }
-.processbox_img{
+.calendar .t_sucsess{
+    display: none;
+    font-size: 16px;
+    font-weight: bold;
+    color: #91CF00;
+    text-align: center;
+}
+.calendar .processbox_bg{
+    position: relative;
     width: 650px;
     height: 100px;
+    border-radius: 20px;
     background-image: url(../img/잔디.png);
     background-size: cover;
+    display: flex;
+    justify-content: right;
+    font-size: 12px; font-weight: bold;
+    color: #91CF00;
+}
+.calendar .processbox_bg>li{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.calendar .processbox_bg>.cWeight_pig{
+    position: absolute;
+    right: 100%;
+    z-index: -1;
+    transform: translateX(100%);
+}
+
+.calendar .processbox_bg>li>div{
+    position: absolute;
+    margin-top: 50px;
+    z-index: -1;
+}
+.calendar .processbox_bg>li>div>img{
+    width: 40px; height: 40px;
+}
+.calendar .cWeight_img>img{
+    transform: scalex(-1);
 }
