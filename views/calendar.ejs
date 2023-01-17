@@ -1,4 +1,5 @@
 <main class="calendar w1100">
+    <!-- 달력 위 목표달성률 -->
     <div class="processbox_wrap">
         <div class="t_sucsess">목표달성!!</div>
         <ul class="processbox_bg">
@@ -12,6 +13,102 @@
             </li>
         </ul>
     </div>
-    <div class="calendarbox_wrap"></div>
+    <!-- 등록정보,달력 -->
+    <div class="calendarbox_wrap">
+        <!-- 등록정보 -->
+        <div class="c_left_regis_info">
+            <div class="c_regis_info_tit">
+                <h2>2023년 1월 3일 화요일</h2>
+                <h1>칼로리 캘린더</h1>
+            </div>
+            <form action="/apiInfo" method="post">
+                <ul class="c_regis_info">
+                    <li>
+                        <div class="c_regis_info_search">
+                            <h3>아침식사</h3>
+                            <div class="c_regis_input_wrap">
+                                <input type="text"><button><img src="img/search.png" alt=""></button>
+                            </div>
+                        </div>
+                        <div class="c_regis_input_result">
+                            <div class="c_regis_check_wrap">
+                                <input type="radio">
+                                <%for(i = 0; i < fResult.length; i++){ %>
+                                <p><%=fResult[i].NUTR_CONT1%></p>
+                                <%}%>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="c_regis_info_search">
+                            <h3>점심식사</h3>
+                            <div class="c_regis_input_wrap">
+                                <input type="text"><button><img src="img/search.png" alt=""></button>
+                            </div>
+                        </div>
+                        <div class="c_regis_input_result">
+                            <div class="c_regis_check_wrap">
+                                <input type="radio">
+                                <p>햄버거</p>
+                                <p>365kcal</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="c_regis_info_search">
+                            <h3>저녁식사</h3>
+                            <div class="c_regis_input_wrap">
+                                <input type="text"><button><img src="img/search.png" alt=""></button>
+                            </div>
+                        </div>
+                        <div class="c_regis_input_result">
+                            <div class="c_regis_check_wrap">
+                                <input type="radio">
+                                <p>햄버거</p>
+                                <p>365kcal</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="c_regis_info_weight">
+                            <h3>현재 몸무게</h3>
+                            <div class="c_regis_input_wrap">
+                                <input type="text"><strong>kg</strong>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </form>
+        </div>
+        <!-- 달력 -->
+        <div class="right_calendar">
+            <table id="calendar_table">
+                <colgroup>
+                    <col style="width: 14.285%">
+                    <col style="width: 14.285%">
+                    <col style="width: 14.285%">
+                    <col style="width: 14.285%">
+                    <col style="width: 14.285%">
+                    <col style="width: 14.285%">
+                    <col style="width: 14.285%">
+                </colgroup>
+                <tr id="c_mainBar">
+                    <td id="preventMonth" colspan="1"><span id="preventMonth_Button" onclick="prevMonth()">
+                            <</span> </td> <td id="yearMonth" colspan="5">
+                    </td>
+                    <td id="nextMonth" colspan="1"><span id="nextMonth_Button" onclick="nextMonth()">></span></td>
+                </tr>
+                <tr id="day">
+                    <td>Sun</td>
+                    <td>Mon</td>
+                    <td>Tue</td>
+                    <td>Wed</td>
+                    <td>Thu</td>
+                    <td>Fri</td>
+                    <td>Sat</td>
+                </tr>
+            </table>
+        </div>
+    </div>
 </main>
 <script src="js/calendar.js"></script>

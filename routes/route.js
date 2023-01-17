@@ -9,6 +9,9 @@ const session = require('express-session');
 const crypto = require('crypto');
 const FileStore = require('session-file-store')(session); // 세션을 파일에 저장
 const cookieParser = require('cookie-parser');
+const request = require('request');
+
+
 
 
 // 세션 (미들웨어) 6
@@ -16,30 +19,38 @@ router.use(session({
     secret: 'blackzat', // 데이터를 암호화 하기 위해 필요한 옵션
     resave: false, // 요청이 왔을때 세션을 수정하지 않더라도 다시 저장소에 저장되도록
     saveUninitialized: true, // 세션이 필요하면 세션을 실행시칸다(서버에 부담을 줄이기 위해)
-    store : new FileStore() // 세션이 데이터를 저장하는 곳
+    store: new FileStore() // 세션이 데이터를 저장하는 곳
 }));
 
-
+// router.get('/api', (req, res) => {
+//     request(firstData, function (error, response, body) {
+//         if (error) {
+//             console.log(error)
+//         }
+//         var obj = JSON.parse(body);
+//         console.log(obj.I2790.row[0].DESC_KOR)
+//     })
+// })
 router.get('/', (req, res) => {
-    if(req.session.is_logined == true){
-        res.render('main',{
-            is_logined : req.session.is_logined,
+    if (req.session.is_logined == true) {
+        res.render('main', {
+            is_logined: req.session.is_logined,
         });
-    }else{
-        res.render('main',{
-            is_logined : false
+    } else {
+        res.render('main', {
+            is_logined: false
         });
-    }   
+    }
 })
 
 router.get('/login', (req, res) => {
-     if(req.session.is_logined == true){
-        res.render('login',{
+    if (req.session.is_logined == true) {
+        res.render('login', {
             is_logined: req.session.is_logined,
         });
-    }else{
-        res.render('login',{
-            is_logined : false
+    } else {
+        res.render('login', {
+            is_logined: false
         });
     }
 })
@@ -49,13 +60,13 @@ router.get('/logout', (req, res) => {
     });
 })
 router.get('/join', (req, res) => {
-    if(req.session.is_logined == true){
-        res.render('join',{
-            is_logined : req.session.is_logined,
+    if (req.session.is_logined == true) {
+        res.render('join', {
+            is_logined: req.session.is_logined,
         });
-    }else{
-        res.render('join',{
-            is_logined : false
+    } else {
+        res.render('join', {
+            is_logined: false
         });
     }
 })
@@ -79,7 +90,6 @@ router.post('/loginCheck', (req, res) => {
     let id = param["id"];
     let pw = param["pw"];
     db.loginCheck(id, pw, (results) => {
-        console.log(results[0].cWeight);
         if (results.length > 0) {
             req.session.is_logined = true;
             req.session.id = results[0].id;
@@ -95,16 +105,46 @@ router.post('/loginCheck', (req, res) => {
 
 
 //칼로리 달력 페이지 
+const apiAddr = "http://openapi.foodsafetykorea.go.kr/api/9afad6adb4074c399a97/I2790/json/1/5";
+const rFoodData = apiAddr + 'DESC_KOR=' + encodeURI(`떡갈비`);
+let results = "";
+router.get('/api', (req, res) => {
+    request(apiAddr, function (error, response, body) {
+        if (error) {
+            console.log(error)
+        }
+        var obj = JSON.parse(body);
+        // console.log(obj.I2790.row[0].NUTR_CONT1)
+        console.log(obj.I2790.row);
+        results = obj.I2790.row;
+    })
+})
 router.get('/calendar', (req, res) => {
-    console.log(req.session.is_logined);
-    if(req.session.is_logined == true){
-        res.render('calendar',{
-            is_logined : req.session.is_logined,
-            cWeight : req.session.cWeight,
-            tWeight : req.session.tWeight
+    if (req.session.is_logined == true) {
+        res.render('calendar', {
+            is_logined: req.session.is_logined,
+            cWeight: req.session.cWeight,
+            tWeight: req.session.tWeight,
+            fResult: results,
         });
-    }else{
+    } else {
         res.send(`<script>alert('로그인이 필요한 서비스입니다.'); document.location.href='/login';</script>`)
     }
 })
+// router.post('/apiInfo', (req, res) => {
+//     let param = JSON.parse(JSON.stringify(req.body));
+//     let foodName = param["food_name"];
+//     cFoodName = foodName;
+//     request(rFoodData, function (error, response, body) {
+//         if (error) {
+//             console.log(error)
+//         }
+//         var obj = JSON.parse(body);
+//         console.log(obj.I2790.row[0].NUTR_CONT1)
+//         results = obj.I2790.row[0].NUTR_CONT1;
+//     })
+//     res.render('/calendar', {
+//         results: results
+//     })
+// })
 module.exports = router;

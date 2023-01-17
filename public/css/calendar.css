@@ -1,52 +1,235 @@
-.calendar{
+/* 달력 위 목표달성률 */
+.calendar {
     height: 1100px;
     padding-top: 200px;
 }
-.calendar .processbox_wrap{
+
+.calendar .processbox_wrap {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
 }
-.calendar .t_sucsess{
+
+.calendar .t_sucsess {
     display: none;
     font-size: 16px;
     font-weight: bold;
     color: #91CF00;
     text-align: center;
 }
-.calendar .processbox_bg{
+
+.calendar .processbox_bg {
     position: relative;
-    width: 650px;
+    width: 59.0909%;
     height: 100px;
     border-radius: 20px;
     background-image: url(../img/잔디.png);
-    background-size: cover;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: bottom;
     display: flex;
     justify-content: right;
-    font-size: 12px; font-weight: bold;
+    font-size: 12px;
+    font-weight: bold;
     color: #91CF00;
 }
-.calendar .processbox_bg>li{
+
+.calendar .processbox_bg>li {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.calendar .processbox_bg>.cWeight_pig{
+
+.calendar .processbox_bg>.cWeight_pig {
     position: absolute;
     right: 100%;
     z-index: -1;
     transform: translateX(100%);
 }
 
-.calendar .processbox_bg>li>div{
+.calendar .processbox_bg>li>div {
     position: absolute;
-    margin-top: 50px;
+    margin-top: 40px;
     z-index: -1;
 }
-.calendar .processbox_bg>li>div>img{
-    width: 40px; height: 40px;
+
+.calendar .processbox_bg>li>div>img {
+    width: 40px;
+    height: 40px;
 }
-.calendar .cWeight_img>img{
+
+.calendar .cWeight_img>img {
     transform: scalex(-1);
+}
+
+
+/* 등록정보,달력 */
+.calendar .calendarbox_wrap {
+    display: flex;
+}
+
+/* 왼쪽 등록정보 */
+.calendar .calendarbox_wrap>.c_left_regis_info {
+    width: 40.9090%;
+    background-color: #91CF00;
+    display: flex;
+    flex-direction: column;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    padding: 25px 0;
+    box-sizing: border-box;
+}
+
+.calendar .c_regis_info_tit {
+    text-align: center;
+    color: #fff;
+    margin-bottom: 70px;
+}
+
+.calendar .c_regis_info_tit>h2 {
+    font-size: 1.125rem;
+}
+
+.calendar .c_regis_info_tit>h1 {
+    font-size: 1.56rem;
+    font-weight: bold;
+}
+
+.calendar .c_regis_info {
+    padding: 0 120px 0 55px;
+    box-sizing: border-box;
+}
+.calendar .c_regis_info>li {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.calendar .c_regis_info_search{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.calendar .c_regis_info_weight{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.calendar .c_regis_info_search>h3 {
+    font-size: 12px;
+    font-weight: bold;
+    color: #fff;
+}
+.calendar .c_regis_info_weight>h3 {
+    font-size: 12px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.calendar .c_regis_input_wrap {
+    width: 70%;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 20px;
+    border: 1px solid #fff;
+    padding: 5px 10px;
+    box-sizing: border-box;
+}
+
+.calendar .c_regis_input_wrap>input {
+    width: 70%;
+    background-color: transparent;
+    border: 0;
+    color: #fff;
+
+    box-shadow: none;
+
+    font-size: 10px;
+
+    -webkit-appearance: none;
+
+    -moz-appearance: none;
+
+    -o-appearance: none;
+
+    appearance: none;
+}
+.calendar .c_regis_input_wrap>input:focus {
+    outline: none;
+}
+
+.calendar .c_regis_input_wrap>button {
+    background-color: transparent;
+    border: 0;
+}
+
+.calendar .c_regis_input_wrap>button>img {
+    display: block;
+    width: 16px;
+}
+
+.calendar .c_regis_input_wrap>strong{
+    font-size: 12px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.calendar .c_regis_input_result{
+    margin-top: 20px;
+    width: 70%;
+    height: 150px;
+    border: 1px solid #fff;
+    border-radius: 20px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+.calendar .c_regis_check_wrap{
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+.calendar .c_regis_check_wrap>p{
+    font-size: 10px;
+    color: #fff;
+}
+
+/*오른쪽 달력 */
+.calendar .calendarbox_wrap>.right_calendar {
+    width: 59.0909%;
+    border-top: 1px solid #91CF00;
+    border-right: 1px solid #91CF00;
+    border-bottom: 1px solid #91CF00;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    padding: 50px;
+    box-sizing: border-box;
+}
+
+/* Styles for the table */
+.calendar #calendar_table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.calendar #calendar_table>tbody {
+    width: 100%;
+}
+
+.calendar #calendar_table td {
+    text-align: center;
+    padding: 20px 0;
+    box-sizing: border-box;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.calendar #c_mainBar {
+    color: #91CF00;
+}
+
+.calendar #day {
+    color: #91CF00;
 }
