@@ -15,4 +15,5 @@ app.use(expressLayout);
 app.use('/', routers);
 app.use(express.static(path.join(__dirname, 'public'))); // 익스프레스 안의 스태틱을 사용하는거다 그냥 스태틱이 아님, 얘는 경로를 일일히 세팅 하게 않하려고 써주는것 여기서 경로를 지정 해주는것
 //스태틱은 정적인 애들 css html을 읽어주는 것 
+
 module.exports = app; //app이라는 이름으로 묘둘화 시켜서 내보내겠다.

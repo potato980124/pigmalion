@@ -185,13 +185,20 @@
     border-radius: 20px;
     padding: 10px;
     box-sizing: border-box;
+    overflow-y: scroll;
 }
 .calendar .c_regis_check_wrap{
     display: flex;
+    flex-direction: column;
     gap: 10px;
     margin-bottom: 10px;
 }
-.calendar .c_regis_check_wrap>p{
+.calendar .c_regis_check_wrap>.c_regis_check{
+    display: flex;
+    gap: 5px;
+}
+
+.calendar .c_regis_check_wrap>.c_regis_check>p{
     font-size: 10px;
     color: #fff;
 }

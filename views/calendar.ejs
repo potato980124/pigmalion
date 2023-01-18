@@ -27,15 +27,11 @@
                         <div class="c_regis_info_search">
                             <h3>아침식사</h3>
                             <div class="c_regis_input_wrap">
-                                <input type="text"><button><img src="img/search.png" alt=""></button>
+                                <input class="m_eat" type="text"><button type="button" onclick="foodSearch()"><img src="img/search.png" alt=""></button>
                             </div>
                         </div>
                         <div class="c_regis_input_result">
-                            <div class="c_regis_check_wrap">
-                                <input type="radio">
-                                <%for(i = 0; i < fResult.length; i++){ %>
-                                <p><%=fResult[i].NUTR_CONT1%></p>
-                                <%}%>
+                            <div class="c_regis_check_wrap m_check">
                             </div>
                         </div>
                     </li>
@@ -47,11 +43,6 @@
                             </div>
                         </div>
                         <div class="c_regis_input_result">
-                            <div class="c_regis_check_wrap">
-                                <input type="radio">
-                                <p>햄버거</p>
-                                <p>365kcal</p>
-                            </div>
                         </div>
                     </li>
                     <li>
@@ -63,9 +54,6 @@
                         </div>
                         <div class="c_regis_input_result">
                             <div class="c_regis_check_wrap">
-                                <input type="radio">
-                                <p>햄버거</p>
-                                <p>365kcal</p>
                             </div>
                         </div>
                     </li>
