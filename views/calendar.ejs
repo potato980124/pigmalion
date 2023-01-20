@@ -18,43 +18,25 @@
         <!-- 등록정보 -->
         <div class="c_left_regis_info">
             <div class="c_regis_info_tit">
-                <h2>2023년 1월 3일 화요일</h2>
                 <h1>칼로리 캘린더</h1>
+                <h2 class="date_click c_y_m_d_subtit"></h2>
             </div>
-            <form action="/apiInfo" method="post">
+            <form action="/cRegisInfo" method="post" class="date_click">
                 <ul class="c_regis_info">
+                    <input class="food_info_when" name="food_info_when" type="hidden">
                     <li>
                         <div class="c_regis_info_search">
                             <h3>아침식사</h3>
                             <div class="c_regis_input_wrap">
-                                <input class="m_eat" type="text"><button type="button" onclick="foodSearch()"><img src="img/search.png" alt=""></button>
+                                <input class="m_eat" type="text"><button type="button" onclick="foodSearch()"><img
+                                        src="img/search.png" alt=""></button>
                             </div>
                         </div>
                         <div class="c_regis_input_result">
                             <div class="c_regis_check_wrap m_check">
                             </div>
                         </div>
-                    </li>
-                    <li>
-                        <div class="c_regis_info_search">
-                            <h3>점심식사</h3>
-                            <div class="c_regis_input_wrap">
-                                <input type="text"><button><img src="img/search.png" alt=""></button>
-                            </div>
-                        </div>
-                        <div class="c_regis_input_result">
-                        </div>
-                    </li>
-                    <li>
-                        <div class="c_regis_info_search">
-                            <h3>저녁식사</h3>
-                            <div class="c_regis_input_wrap">
-                                <input type="text"><button><img src="img/search.png" alt=""></button>
-                            </div>
-                        </div>
-                        <div class="c_regis_input_result">
-                            <div class="c_regis_check_wrap">
-                            </div>
+                        <div class="c_regis_what_wrap">
                         </div>
                     </li>
                     <li>
@@ -64,6 +46,9 @@
                                 <input type="text"><strong>kg</strong>
                             </div>
                         </div>
+                    </li>
+                    <li>
+                        <button type="submit">등록</button>
                     </li>
                 </ul>
             </form>

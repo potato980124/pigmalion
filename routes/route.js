@@ -104,6 +104,20 @@ router.get('/calendar', (req, res) => {
         res.send(`<script>alert('로그인이 필요한 서비스입니다.'); document.location.href='/login';</script>`)
     }
 })
-
+router.post('/cRegisInfo', (req, res) => {
+    let param = JSON.parse(JSON.stringify(req.body));
+    let paramLength = Object.values(param).length;
+    let foodsList = {};
+    let when = param['food_info_when'];
+    let userid = req.session.id;
+    console.log(when);
+    console.log(userid);
+    for (i = 0; i < paramLength-1; i++){
+        // console.log(param[`m_foods${i}`]);
+        foodsList[`foodList${i}`] = param[`m_foods${i}`];
+    }
+    console.log(foodsList);
+    res.redirect('/calendar');
+})
 
 module.exports = router;

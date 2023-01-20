@@ -95,6 +95,9 @@
     font-size: 1.56rem;
     font-weight: bold;
 }
+.calendar .date_click{
+    display: none;
+}
 
 .calendar .c_regis_info {
     padding: 0 120px 0 55px;
@@ -199,6 +202,19 @@
 }
 
 .calendar .c_regis_check_wrap>.c_regis_check>p{
+    font-size: 10px;
+    color: #fff;
+}
+
+.calendar .c_regis_what_wrap{
+    margin-top: 10px;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+}
+.calendar .c_regis_what{
+    display: flex;
+    gap: 30px;
     font-size: 10px;
     color: #fff;
 }
