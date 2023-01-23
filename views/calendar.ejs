@@ -24,6 +24,9 @@
             <form action="/cRegisInfo" method="post" class="date_click">
                 <ul class="c_regis_info">
                     <input class="food_info_when" name="food_info_when" type="hidden">
+                    <input class="m_foods_length" name="m_foods_length" type="hidden">
+                    <input class="l_foods_length" name="l_foods_length" type="hidden">
+                    <input class="d_foods_length" name="d_foods_length" type="hidden">
                     <li>
                         <div class="c_regis_info_search">
                             <h3>아침식사</h3>
@@ -33,10 +36,40 @@
                             </div>
                         </div>
                         <div class="c_regis_input_result">
-                            <div class="c_regis_check_wrap m_check">
+                            <div class="c_regis_check_wrap m_check morning">
                             </div>
                         </div>
-                        <div class="c_regis_what_wrap">
+                        <div class="c_regis_what_wrap c_regis_what_wrap_morning">
+                        </div>
+                    </li>
+                    <li>
+                        <div class="c_regis_info_search">
+                            <h3>점심식사</h3>
+                            <div class="c_regis_input_wrap">
+                                <input class="l_eat" type="text"><button type="button" onclick="foodSearchLunch()"><img
+                                        src="img/search.png" alt=""></button>
+                            </div>
+                        </div>
+                        <div class="c_regis_input_result">
+                            <div class="c_regis_check_wrap m_check lunch">
+                            </div>
+                        </div>
+                        <div class="c_regis_what_wrap c_regis_what_wrap_lunch">
+                        </div>
+                    </li>
+                    <li>
+                        <div class="c_regis_info_search">
+                            <h3>저녁식사</h3>
+                            <div class="c_regis_input_wrap">
+                                <input class="d_eat" type="text"><button type="button" onclick="foodSearchDinner()"><img
+                                        src="img/search.png" alt=""></button>
+                            </div>
+                        </div>
+                        <div class="c_regis_input_result">
+                            <div class="c_regis_check_wrap m_check dinner">
+                            </div>
+                        </div>
+                        <div class="c_regis_what_wrap c_regis_what_wrap_dinner">
                         </div>
                     </li>
                     <li>

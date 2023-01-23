@@ -106,18 +106,33 @@ router.get('/calendar', (req, res) => {
 })
 router.post('/cRegisInfo', (req, res) => {
     let param = JSON.parse(JSON.stringify(req.body));
-    let paramLength = Object.values(param).length;
-    let foodsList = {};
+    let foodsList = [];
+    let mListLength = param[`m_foods_length`];
+    let foodsListLunch = [];
+    let lListLength = param[`l_foods_length`];
+    let foodsListDinner = [];
+    let dListLength = param[`d_foods_length`];
     let when = param['food_info_when'];
     let userid = req.session.id;
-    console.log(when);
-    console.log(userid);
-    for (i = 0; i < paramLength-1; i++){
-        // console.log(param[`m_foods${i}`]);
-        foodsList[`foodList${i}`] = param[`m_foods${i}`];
+    console.log(mListLength);
+    console.log(lListLength);
+    console.log(param);
+    //아침,점심,저녁
+    for (i = 0; i < mListLength; i++){
+        foodsList.push(param[`m_foods${i}`]);
+    }
+    for (i = 0; i < lListLength; i++){
+        foodsListLunch.push(param[`l_foods${i}`]);
+    }
+    for (i = 0; i < dListLength; i++){
+        foodsListDinner.push(param[`d_foods${i}`]);
     }
     console.log(foodsList);
-    res.redirect('/calendar');
+    console.log(foodsListLunch);
+    console.log(foodsListDinner);
+    // db.insertUsercalendar(userid,when,foodsList, () => {
+        res.redirect('/calendar');
+    // })
 })
 
 module.exports = router;
