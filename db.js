@@ -27,17 +27,17 @@ function loginCheck(id, pw, callback) {
 }
 
 // 칼로리 캘린더 테이블에 넣어주는 함수
-function insertUsercalendar(userid,when,foodsListM,foodsListLunch,foodsListDinner, callback) {
-    const query = "insert into `usercalendarinfo` (`userid`, `whenregis`,`whenfood`,`foodname`, `kcal`, `tan`, `dan`, `fat`) values ?;";
+function insertUsercalendar(userid,when,foodsListM,foodsListLunch,foodsListDinner,currentKg, callback) {
+    const query = "insert into `usercalendarinfo` (`userid`, `whenregis`,`whenfood`,`foodname`, `kcal`, `tan`, `dan`, `fat`,`currentkg`) values ?;";
     const values = [];
     for (i = 0; i < foodsListM.length; i++) {
-        values.push([`${userid}`,`${when}`,`${foodsListM[i][0]}`,`${foodsListM[i][1]}`,`${foodsListM[i][2]}`,`${foodsListM[i][3]}`,`${foodsListM[i][4]}`,`${foodsListM[i][5]}`])
+        values.push([`${userid}`,`${when}`,`${foodsListM[i][0]}`,`${foodsListM[i][1]}`,`${foodsListM[i][2]}`,`${foodsListM[i][3]}`,`${foodsListM[i][4]}`,`${foodsListM[i][5]}`,`${currentKg}`])
      };
     for (i = 0; i < foodsListLunch.length; i++) {
-        values.push([`${userid}`,`${when}`,`${foodsListLunch[i][0]}`,`${foodsListLunch[i][1]}`,`${foodsListLunch[i][2]}`,`${foodsListLunch[i][3]}`,`${foodsListLunch[i][4]}`,`${foodsListLunch[i][5]}`])
+        values.push([`${userid}`,`${when}`,`${foodsListLunch[i][0]}`,`${foodsListLunch[i][1]}`,`${foodsListLunch[i][2]}`,`${foodsListLunch[i][3]}`,`${foodsListLunch[i][4]}`,`${foodsListLunch[i][5]}`,`${currentKg}`])
      };
     for (i = 0; i < foodsListDinner.length; i++) {
-        values.push([`${userid}`,`${when}`,`${foodsListDinner[i][0]}`,`${foodsListDinner[i][1]}`,`${foodsListDinner[i][2]}`,`${foodsListDinner[i][3]}`,`${foodsListDinner[i][4]}`,`${foodsListDinner[i][5]}`])
+        values.push([`${userid}`,`${when}`,`${foodsListDinner[i][0]}`,`${foodsListDinner[i][1]}`,`${foodsListDinner[i][2]}`,`${foodsListDinner[i][3]}`,`${foodsListDinner[i][4]}`,`${foodsListDinner[i][5]}`,`${currentKg}`])
      };
     connection.query(query, [values], (err) => {
         if (err) throw err;

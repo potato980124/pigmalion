@@ -92,11 +92,12 @@ router.post('/loginCheck', (req, res) => {
     })
 })
 
-
+//달력 페이지
 router.get('/calendar', (req, res) => {
     if (req.session.is_logined == true) {
         let userid = req.session.id;
         db.getUsercalendar(userid,(results)=>{
+            console.log(results);
             res.render('calendar', {
                 is_logined: req.session.is_logined,
                 cWeight: req.session.cWeight,
@@ -118,6 +119,7 @@ router.post('/cRegisInfo', (req, res) => {
     let dListLength = param[`d_foods_length`];
     let when = param['food_info_when'];
     let userid = req.session.id;
+    let currentKg = param['currentKg'];
     console.log(param);
     console.log(mListLength);
     //아침,점심,저녁
@@ -145,7 +147,7 @@ router.post('/cRegisInfo', (req, res) => {
     console.log(foodsListM);
     console.log(foodsListLunch);
     console.log(foodsListDinner);
-    db.insertUsercalendar(userid,when,foodsListM,foodsListLunch,foodsListDinner, () => {
+    db.insertUsercalendar(userid,when,foodsListM,foodsListLunch,foodsListDinner,currentKg, () => {
         res.redirect('/calendar');
     })
 })

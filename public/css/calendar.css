@@ -218,10 +218,22 @@
     width: 70%;
     height: 150px;
     border: 1px solid #fff;
-    border-radius: 20px;
+    border-radius: 10px;
     padding: 10px;
     box-sizing: border-box;
     overflow-y: scroll;
+}
+.calendar .c_regis_input_result::-webkit-scrollbar{
+    width: 5px;
+    height: 70%;
+}
+.calendar .c_regis_input_result::-webkit-scrollbar-thumb{
+    background: #fff;
+    background-clip: padding-box;
+    border-radius: 20px;
+}
+.calendar .c_regis_input_result::-webkit-scrollbar-track{
+    background-color: transparent;
 }
 .calendar .c_regis_check_wrap{
     display: flex;
