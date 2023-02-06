@@ -1,3 +1,8 @@
+//전역변수
+let cInputWrap = document.querySelectorAll('.c_regis_input_wrap');
+let cResultBox = document.querySelectorAll('.c_regis_input_result');
+let cRegiCheckWhat = document.querySelectorAll('.c_regis_check_wrap');
+let cRegisWhatWrap  = document.querySelectorAll('.c_regis_what_wrap');
 // 목표달성률
 let cWeight = document.querySelector('.cWeight');
 let replaceWeight = 68;
@@ -83,7 +88,6 @@ function buildCalendar() {
     }
     let lastRow = calendar.rows[calendar.rows.length - 1];
     for (i = 0; i < lastRow.children.length; i++) {
-        // if (/* lastRow.children[i].innerText == 1 */true) {
         for (j = 0; j < 8; j++) {
             if (lastRow.children[i].innerText == j) {
                 lastRow.children[i].style.color = ' rgba(0, 0, 0, 30%)';
@@ -95,22 +99,32 @@ function buildCalendar() {
     let targetDate = document.querySelectorAll('.target_date');
     let dateClick = document.querySelectorAll(".date_click");
     let subtit = document.querySelector(".c_y_m_d_subtit");
-    console.log(targetDate);
+    let cRegiInput = document.querySelectorAll
     targetDate.forEach((e) => {
         e.addEventListener("click", () => {
-            // console.log(e.innerText);
             subtit.innerHTML = today_yearMonth + `${e.innerText}일`;
             for (i = 0; i < targetDate.length; i++) {
                 targetDate[i].style.color = "#000";
             }
             e.style.color = "#91CF00";
             dateClick.forEach((e) => {
+                cInputWrap.forEach((e)=>{
+                    e.children[0].value = '';
+                })
+                cResultBox.forEach((e)=>{
+                    e.style.display = "none";
+                })
+                cRegiCheckWhat.forEach((e)=>{
+                    e.innerHTML = '';
+                })
+                cRegisWhatWrap.forEach((e)=>{
+                    e.innerHTML = '';
+                })
                 e.style.display = "block";
             })
             //post로 전송 할 때 언제,유저 id 히든인풋에 value 값으로 넣어주는 함수 
             let when = document.querySelector('.food_info_when');
             when.value = subtit.innerText;
-            console.log(when.value);
         })
     })
 }
@@ -143,6 +157,12 @@ function nextMonth() {
     today = new Date(todayYear, todayMonth - 1);
     buildCalendar();
 }
+//음식검색 인풋창 클릭시
+cInputWrap.forEach((e,index)=>{
+    e.addEventListener('click',()=>{
+        cResultBox[index].style.display = "block";
+    })
+})
 // 음식 데이터
 let apiFoodDatas = {};
 let atFoodName = [];
@@ -151,14 +171,13 @@ function foodSearch() {
     apiFoodDatas = {};
     atFoodName = [];
     let mEat = document.querySelector('.m_eat').value;
-    console.log(mEat);
     const apiAddr = "http://openapi.foodsafetykorea.go.kr/api/9afad6adb4074c399a97/I2790/json/1/100/";
     let rFoodData = apiAddr + 'DESC_KOR=' + encodeURI(`${mEat}`);
     fetch(rFoodData)
         .then((response) => response.json())
         .then((data) => {
             apiFoodDatas = data.I2790;
-            console.log(apiFoodDatas);
+            // console.log(apiFoodDatas);
             atFoodName.splice(0, 100);
             // console.log(apiFoodDatas.row[0]);
             for (i = 0; i < apiFoodDatas.row.length; i++) {
@@ -177,7 +196,7 @@ function foodSearch() {
             let cFoodList = document.querySelector('.morning');
             cFoodList.innerHTML = '';
             for (i = 0; i < atFoodName.length; i++) {
-                cFoodList.innerHTML += `<div class="c_regis_check"><input type="checkbox" class="food_value food_value${i}"><p class="food_name">${atFoodName[i].name}</p><p class="food_kcal">${atFoodName[i].kcal}kcal</p><div/>`;
+                cFoodList.innerHTML += `<div class="c_regis_check"><input type="checkbox" class="food_value food_value${i}"><p class="food_name">${atFoodName[i].name}</p><p class="food_kcal">${atFoodName[i].kcal}kcal</p></div>`;
                 // 음식 선택시 c_regis_what에 표시
                 let foodValue = document.querySelectorAll(".food_value");
                 let cRegisWhatWrap = document.querySelector('.c_regis_what_wrap_morning');
@@ -185,25 +204,24 @@ function foodSearch() {
                 foodValue.forEach((e, index) => {
                     e.addEventListener('change', () => { // 체크된 애들 체크박스 아래에 추가 해줄 떄
                         if (e.checked == true) {
-                            cRegisWhatWrap.innerHTML += `<div class="c_regis_what c_regis_what_m c_regis_what_m${index}"><input type="hidden" name="m_foods${index}" value="morning"><input type="hidden" name="m_foods${index}" value="${atFoodName[index].name}"><input type="hidden" name="m_foods${index}" value="${atFoodName[index].kcal}"><input type="hidden" name="m_foods${index}" value="${atFoodName[index].tansu}"><input type="hidden" name="m_foods${index}" value="${atFoodName[index].danbak}"><input type="hidden" name="m_foods${index}" value="${atFoodName[index].fat}"><p>${foodName[index].innerText}</p><p class="c_delete_check">x</p></div>`;
+                            cRegisWhatWrap.innerHTML += `<div class="c_regis_what c_regis_what_m c_regis_what_m${index}"><input type="hidden" name="m_foods_when" value="morning"><input type="hidden" name="m_foods_name" value="${atFoodName[index].name}"><input type="hidden" name="m_foods_kcal" value="${atFoodName[index].kcal}"><input type="hidden" name="m_foods_tansu" value="${atFoodName[index].tansu}"><input type="hidden" name="m_foods_danbak" value="${atFoodName[index].danbak}"><input type="hidden" name="m_foods_fat" value="${atFoodName[index].fat}"><p>${foodName[index].innerText}</p><p class="c_delete_check">x</p></div>`;
                             let deleteCheck = document.querySelectorAll('.c_delete_check');
                             let deleteNum = 0;
                             let cRegisWhat = document.querySelectorAll(`.c_regis_what_m`);
                             //db에 넣기 위해 히든 인풋 태그에 value 값 넣어줄 때
-                            // let mFoodsValue = document.getElementsByName('m_foods');
-                            // console.log(mFoodsValue[0]);
                             let c_regis_what_m_length = cRegisWhat.length;
                             let $mFoodsLength = document.querySelector('.m_foods_length');
-                            $mFoodsLength.value = c_regis_what_m_length;
+                            $mFoodsLength.value = c_regis_what_m_length;  
                             deleteCheck.forEach((del, dindex) => { // 체크된 음식들 지울 떄
                                 del.addEventListener('click', () => {
                                     deleteNum = cRegisWhat[dindex].classList[2];
                                     let cDeleteNum = document.querySelector(`.${deleteNum}`);
-                                    // let deleteChoose = document.querySelector(`.food_value${dindex}`);
                                     cDeleteNum.remove();
-                                    // deleteChoose.checked = false;
+                                    c_regis_what_m_length -= 1;
+                                    $mFoodsLength.value = c_regis_what_m_length;
                                 })
                             })
+                            // console.log(c_regis_what_m_length);
                         }
                     })
                 })
@@ -217,14 +235,14 @@ function foodSearchLunch() {
     apiFoodDatas = {};
     atFoodName = [];
     let lEat = document.querySelector('.l_eat').value;
-    console.log(lEat);
+    // console.log(lEat);
     const apiAddr = "http://openapi.foodsafetykorea.go.kr/api/9afad6adb4074c399a97/I2790/json/1/100/";
     let rFoodData = apiAddr + 'DESC_KOR=' + encodeURI(`${lEat}`);
     fetch(rFoodData)
         .then((response) => response.json())
         .then((data) => {
             apiFoodDatas = data.I2790;
-            console.log(apiFoodDatas);
+            // console.log(apiFoodDatas);
             atFoodName.splice(0, 100);
             // console.log(apiFoodDatas.row[0]);
             for (i = 0; i < apiFoodDatas.row.length; i++) {
@@ -243,22 +261,20 @@ function foodSearchLunch() {
             let cFoodList = document.querySelector('.lunch');
             cFoodList.innerHTML = '';
             for (i = 0; i < atFoodName.length; i++) {
-                cFoodList.innerHTML += `<div class="c_regis_check"><input type="checkbox" class="food_value_l l_food_value${i}"><p class="lunch_food_name">${atFoodName[i].name}</p><p class="food_kcal">${atFoodName[i].kcal}kcal</p><div/>`;
+                cFoodList.innerHTML += `<div class="c_regis_check"><input type="checkbox" class="food_value_l l_food_value${i}"><p class="lunch_food_name">${atFoodName[i].name}</p><p class="food_kcal">${atFoodName[i].kcal}kcal</p></div>`;
                 // 음식 선택시 c_regis_what에 표시
                 let foodValue = document.querySelectorAll(".food_value_l");
-                console.log(foodValue);
+                // console.log(foodValue);
                 let cRegisWhatWrap = document.querySelector('.c_regis_what_wrap_lunch');
                 let foodName = document.querySelectorAll('.lunch_food_name');
                 foodValue.forEach((e, index) => {
                     e.addEventListener('change', () => { // 체크된 애들 체크박스 아래에 추가 해줄 떄
                         if (e.checked == true) {
-                            cRegisWhatWrap.innerHTML += `<div class="c_regis_what c_regis_what_l c_regis_what_l${index}"><input type="hidden" name="l_foods${index}" value="lunch"><input type="hidden" name="l_foods${index}" value="${atFoodName[index].name}"><input type="hidden" name="l_foods${index}" value="${atFoodName[index].kcal}"><input type="hidden" name="l_foods${index}" value="${atFoodName[index].tansu}"><input type="hidden" name="l_foods${index}" value="${atFoodName[index].danbak}"><input type="hidden" name="l_foods${index}" value="${atFoodName[index].fat}"><p>${foodName[index].innerText}</p><p class="c_delete_check_l">x</p></div>`;
+                            cRegisWhatWrap.innerHTML += `<div class="c_regis_what c_regis_what_l c_regis_what_l${index}"><input type="hidden" name="l_foods_when" value="lunch"><input type="hidden" name="l_foods_name" value="${atFoodName[index].name}"><input type="hidden" name="l_foods_kcal" value="${atFoodName[index].kcal}"><input type="hidden" name="l_foods_tansu" value="${atFoodName[index].tansu}"><input type="hidden" name="l_foods_danbak" value="${atFoodName[index].danbak}"><input type="hidden" name="l_foods_fat" value="${atFoodName[index].fat}"><p>${foodName[index].innerText}</p><p class="c_delete_check_l">x</p></div>`;
                             let deleteCheck = document.querySelectorAll('.c_delete_check_l');
                             let deleteNum = 0;
                             let cRegisWhat = document.querySelectorAll(`.c_regis_what_l`);
                             //db에 넣기 위해 히든 인풋 태그에 value 값 넣어줄 때
-                            // let mFoodsValue = document.getElementsByName('m_foods');
-                            // console.log(mFoodsValue[0]);
                             let c_regis_what_l_length = cRegisWhat.length;
                             let $lFoodsLength = document.querySelector('.l_foods_length');
                             $lFoodsLength.value = c_regis_what_l_length;
@@ -266,9 +282,9 @@ function foodSearchLunch() {
                                 del.addEventListener('click', () => {
                                     deleteNum = cRegisWhat[dindex].classList[2];
                                     let cDeleteNum = document.querySelector(`.${deleteNum}`);
-                                    // let deleteChoose = document.querySelector(`.food_value${dindex}`);
                                     cDeleteNum.remove();
-                                    // deleteChoose.checked = false;
+                                    c_regis_what_l_length -= 1;
+                                    $lFoodsLength.value = c_regis_what_l_length;
                                 })
                             })
                         }
@@ -284,14 +300,14 @@ function foodSearchDinner() {
     apiFoodDatas = {};
     atFoodName = [];
     let DEat = document.querySelector('.d_eat').value;
-    console.log(DEat);
+    // console.log(DEat);
     const apiAddr = "http://openapi.foodsafetykorea.go.kr/api/9afad6adb4074c399a97/I2790/json/1/100/";
     let rFoodData = apiAddr + 'DESC_KOR=' + encodeURI(`${DEat}`);
     fetch(rFoodData)
         .then((response) => response.json())
         .then((data) => {
             apiFoodDatas = data.I2790;
-            console.log(apiFoodDatas);
+            // console.log(apiFoodDatas);
             atFoodName.splice(0, 100);
             // console.log(apiFoodDatas.row[0]);
             for (i = 0; i < apiFoodDatas.row.length; i++) {
@@ -310,16 +326,16 @@ function foodSearchDinner() {
             let cFoodList = document.querySelector('.dinner');
             cFoodList.innerHTML = '';
             for (i = 0; i < atFoodName.length; i++) {
-                cFoodList.innerHTML += `<div class="c_regis_check"><input type="checkbox" class="food_value_d d_food_value${i}"><p class="dinner_food_name">${atFoodName[i].name}</p><p class="food_kcal">${atFoodName[i].kcal}kcal</p><div/>`;
+                cFoodList.innerHTML += `<div class="c_regis_check"><input type="checkbox" class="food_value_d d_food_value${i}"><p class="dinner_food_name">${atFoodName[i].name}</p><p class="food_kcal">${atFoodName[i].kcal}kcal</p></div>`;
                 // 음식 선택시 c_regis_what에 표시
                 let foodValue = document.querySelectorAll(".food_value_d");
-                console.log(foodValue);
+                // console.log(foodValue);
                 let cRegisWhatWrap = document.querySelector('.c_regis_what_wrap_dinner');
                 let foodName = document.querySelectorAll('.dinner_food_name');
                 foodValue.forEach((e, index) => {
                     e.addEventListener('change', () => { // 체크된 애들 체크박스 아래에 추가 해줄 떄
                         if (e.checked == true) {
-                            cRegisWhatWrap.innerHTML += `<div class="c_regis_what c_regis_what_d c_regis_what_d${index}"><input type="hidden" name="d_foods${index}" value="dinner"><input type="hidden" name="d_foods${index}" value="${atFoodName[index].name}"><input type="hidden" name="d_foods${index}" value="${atFoodName[index].kcal}"><input type="hidden" name="d_foods${index}" value="${atFoodName[index].tansu}"><input type="hidden" name="d_foods${index}" value="${atFoodName[index].danbak}"><input type="hidden" name="d_foods${index}" value="${atFoodName[index].fat}"><p>${foodName[index].innerText}</p><p class="c_delete_check_d">x</p></div>`;
+                            cRegisWhatWrap.innerHTML += `<div class="c_regis_what c_regis_what_d c_regis_what_d${index}"><input type="hidden" name="d_foods_when" value="dinner"><input type="hidden" name="d_foods_name" value="${atFoodName[index].name}"><input type="hidden" name="d_foods_kcal" value="${atFoodName[index].kcal}"><input type="hidden" name="d_foods_tansu" value="${atFoodName[index].tansu}"><input type="hidden" name="d_foods_danbak" value="${atFoodName[index].danbak}"><input type="hidden" name="d_foods_fat" value="${atFoodName[index].fat}"><p>${foodName[index].innerText}</p><p class="c_delete_check_d">x</p></div>`;
                             let deleteCheck = document.querySelectorAll('.c_delete_check_d');
                             let deleteNum = 0;
                             let cRegisWhat = document.querySelectorAll(`.c_regis_what_d`);
@@ -333,9 +349,9 @@ function foodSearchDinner() {
                                 del.addEventListener('click', () => {
                                     deleteNum = cRegisWhat[dindex].classList[2];
                                     let cDeleteNum = document.querySelector(`.${deleteNum}`);
-                                    // let deleteChoose = document.querySelector(`.food_value${dindex}`);
                                     cDeleteNum.remove();
-                                    // deleteChoose.checked = false;
+                                    c_regis_what_d_length -= 1;
+                                    $dFoodsLength.value = c_regis_what_d_length;
                                 })
                             })
                         }

@@ -69,9 +69,16 @@
     display: flex;
 }
 
+/* 왼쪽 등록 됐을 때 정보 */
+.calendar .c_regis_results_wrap{
+    padding: 0 60px;
+    box-sizing: border-box;
+}
+
 /* 왼쪽 등록정보 */
 .calendar .calendarbox_wrap>.c_left_regis_info {
     width: 40.9090%;
+    max-height: 592px;
     background-color: #91CF00;
     display: flex;
     flex-direction: column;
@@ -79,8 +86,20 @@
     border-bottom-left-radius: 20px;
     padding: 25px 0;
     box-sizing: border-box;
+    overflow-y: scroll;
 }
-
+.c_left_regis_info::-webkit-scrollbar{
+    width: 10px;
+}
+.c_left_regis_info::-webkit-scrollbar-thumb{
+    background: #fff;
+    background-clip: padding-box;
+    border-right: 5px solid transparent;
+    border-radius: 20px;
+}
+.c_left_regis_info::-webkit-scrollbar-track{
+    background-color: transparent;
+}
 .calendar .c_regis_info_tit {
     text-align: center;
     color: #fff;
@@ -108,6 +127,16 @@
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+}
+.calendar .c_regis_info>li>button{
+    width: 70%;
+    border-radius: 20px;
+    background-color: #fff;
+    border: 0;
+    padding: 5px;
+    box-sizing: border-box;
+    font-weight: bold;
+    font-size: 0.75rem;
 }
 .calendar .c_regis_info_search{
     width: 100%;
@@ -163,6 +192,9 @@
 .calendar .c_regis_input_wrap>input:focus {
     outline: none;
 }
+.calendar .c_regis_input_wrap>input::placeholder {
+    color: #fff;
+}
 
 .calendar .c_regis_input_wrap>button {
     background-color: transparent;
@@ -181,6 +213,7 @@
 }
 
 .calendar .c_regis_input_result{
+    display: none;
     margin-top: 20px;
     width: 70%;
     height: 150px;
