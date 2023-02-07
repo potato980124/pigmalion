@@ -81,7 +81,7 @@ router.post('/loginCheck', (req, res) => {
     db.loginCheck(id, pw, (results) => {
         if (results.length > 0) {
             req.session.is_logined = true;
-            req.session.id = results[0].id;
+            req.session.userId = results[0].id;
             req.session.pw = results[0].pw;
             req.session.cWeight = results[0].cWeight;
             req.session.tWeight = results[0].tWeight;
@@ -95,8 +95,10 @@ router.post('/loginCheck', (req, res) => {
 //달력 페이지
 router.get('/calendar', (req, res) => {
     if (req.session.is_logined == true) {
-        let userid = req.session.id;
-        db.getUsercalendar(userid,(results)=>{
+        let userid = req.session.userId;
+        let todayYearMonthDate = req.query.id;
+        console.log(todayYearMonthDate);
+        db.getUsercalendar(userid,todayYearMonthDate,(results)=>{
             console.log(results);
             res.render('calendar', {
                 is_logined: req.session.is_logined,
@@ -118,10 +120,10 @@ router.post('/cRegisInfo', (req, res) => {
     let foodsListDinner = [];
     let dListLength = param[`d_foods_length`];
     let when = param['food_info_when'];
-    let userid = req.session.id;
+    let userid = req.session.userId;
     let currentKg = param['currentKg'];
-    console.log(param);
-    console.log(mListLength);
+    // console.log(param);
+    // console.log(mListLength);
     //아침,점심,저녁
     for (i = 0; i < mListLength; i++){
         if(mListLength == 1){
@@ -144,9 +146,9 @@ router.post('/cRegisInfo', (req, res) => {
             foodsListDinner.push([param[`d_foods_when`][i],param[`d_foods_name`][i],param[`d_foods_kcal`][i],param[`d_foods_tansu`][i],param[`d_foods_danbak`][i],param[`d_foods_fat`][i]]);
         }
     }
-    console.log(foodsListM);
-    console.log(foodsListLunch);
-    console.log(foodsListDinner);
+    // console.log(foodsListM);
+    // console.log(foodsListLunch);
+    // console.log(foodsListDinner);
     db.insertUsercalendar(userid,when,foodsListM,foodsListLunch,foodsListDinner,currentKg, () => {
         res.redirect('/calendar');
     })

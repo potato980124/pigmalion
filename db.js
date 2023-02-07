@@ -45,8 +45,8 @@ function insertUsercalendar(userid,when,foodsListM,foodsListLunch,foodsListDinne
     })
 }
 //칼로리 캘린더 데이터 받아오는 함수
-function getUsercalendar(userid,callback){
-    connection.query(`select * from usercalendarinfo where userid = '${userid}'`,(err,results)=>{
+function getUsercalendar(userid,todayYearMonthDate,callback){
+    connection.query(`select * from usercalendarinfo where userid = '${userid}' and whenregis = '${todayYearMonthDate}'`,(err,results)=>{
         if(err) throw err;
         callback(results);
     })

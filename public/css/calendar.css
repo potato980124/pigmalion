@@ -71,8 +71,44 @@
 
 /* 왼쪽 등록 됐을 때 정보 */
 .calendar .c_regis_results_wrap{
-    padding: 0 60px;
+    padding: 0 30px;
     box-sizing: border-box;
+    color: #fff;
+}
+.calendar .c_regis_results_wrap>table{
+    width: 100%;
+}
+.calendar .c_regis_results_wrap table .nutri_title{
+    font-size: 0.85rem;
+    font-weight: bold;
+    text-align: left;
+}
+.calendar .c_regis_results_wrap table tr:nth-child(1){
+    line-height: 10px;
+}
+.calendar .c_regis_results_wrap table tr:nth-child(2){
+    border-bottom: 2px solid #D9D9D9;
+    box-sizing: border-box;
+    line-height: 25px;
+}
+.calendar .c_regis_results_wrap table tr{
+    line-height: 40px;
+}
+.calendar .c_regis_results_wrap table tr>td:nth-child(1){
+    text-align: left;
+}
+.calendar .c_regis_results_wrap table tr>td{
+    text-align: center;
+}
+.calendar .c_regis_results_wrap table th{
+    font-size: 0.625rem;
+}
+.calendar .c_regis_results_wrap table .when_eat{
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+.calendar .c_regis_results_wrap table td{
+    font-size: 0.625rem;
 }
 
 /* 왼쪽 등록정보 */
@@ -115,7 +151,7 @@
     font-weight: bold;
 }
 .calendar .date_click{
-    display: none;
+    display: block;
 }
 
 .calendar .c_regis_info {
