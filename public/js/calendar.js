@@ -27,7 +27,6 @@ if (totalCalc == 0) {
   cWeightPig.style.right = `${totalCalc}%`;
   cWeightPig.style.transform = `translateX(${totalCalc}%)`;
 }
-
 // 달력
 
 let today = new Date();
@@ -58,7 +57,8 @@ function buildCalendar() {
         leftDays -= 1;
         nextMonthDate += 1;
       } else {
-        let todayYearMonthDate = todayYear + "년" + todayMonth + "월" + setDays +"일";
+        let todayYearMonthDate =
+          todayYear + "년" + todayMonth + "월" + setDays + "일";
         row.insertCell().innerHTML = `<p class="target_date" onclick="javascript:location.href='/calendar?id=${todayYearMonthDate}'">${setDays}</p>`;
         setDays += 1;
         leftDays -= 1;
@@ -95,8 +95,13 @@ function buildCalendar() {
   let subtit = document.querySelector(".c_y_m_d_subtit");
   let cRegiInput = document.querySelectorAll;
   targetDate.forEach((e) => {
-    e.addEventListener("click", () => {
-      subtit.innerHTML = today_yearMonth + `${e.innerText}일`;
+    e.addEventListener("click", (e) => {
+      //등록된 정보가 있는지 없는지
+      let cRegisResultsWrap = document.querySelector(".c_regis_results_wrap");
+      if(subtit.innerText){
+        cRegisResultsWrap.style.display = 'block';
+      }
+      // subtit.innerHTML = today_yearMonth + `${e.innerText}일`;
       for (i = 0; i < targetDate.length; i++) {
         targetDate[i].style.color = "#000";
       }
@@ -151,6 +156,15 @@ function nextMonth() {
   today = new Date(todayYear, todayMonth - 1);
   buildCalendar();
 }
+//fetch로 보낼 데이터 처리 ajsx로 보내려 했는데 안 됐다~~~
+// function sendWhen(todayYearMonthDate) {
+//   console.log(todayYearMonthDate);
+//   let sendData = encodeURIComponent(`${todayYearMonthDate}`);
+//   fetch(`/calendar?id=${sendData}`)
+//     // .then((response) => response.json())
+//     // .then((data) => console.log(data))
+//     .catch((error) => console.error(error));
+// }
 //음식검색 인풋창 클릭시
 cInputWrap.forEach((e, index) => {
   e.addEventListener("click", () => {
@@ -364,9 +378,4 @@ function foodSearchDinner() {
         });
       }
     });
-}
-//test
-let test = document.querySelector('.test');
-if(test.innerHTML == null){
-    
 }

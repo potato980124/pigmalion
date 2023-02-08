@@ -19,7 +19,11 @@
     <div class="c_left_regis_info">
       <div class="c_regis_info_tit">
         <h1>칼로리 캘린더</h1>
-        <h2 class="date_click c_y_m_d_subtit"><%= results[0].whenregis%></h2>
+        <h2 class="date_click c_y_m_d_subtit">
+          <% if(results.length != 0){ %>
+            <%= results[0].whenregis %>
+          <%}%>
+        </h2>
       </div>
       <div class="c_regis_results_wrap">
         <table>
@@ -48,37 +52,44 @@
             <td class="when_eat">아침식사</td>
           </tr>
           <% results.forEach((result,index) =>{ %>
-          <%if(result.whenfood == 'morning'){%>     
-          <%if(result.whenfood == 'morning'){%>     
+          <% if(result.whenfood == 'morning'){%>
           <tr>
-            <td class="test"><%= result.foodname%></td>
-            <td>40.86</td>
-            <td>40.56</td>
-            <td>45.84</td>
-            <td>852</td>
+            <td><%= result.foodname %></td>
+            <td><%= result.fat %></td>
+            <td><%= result.tan %></td>
+            <td><%= result.dan %></td>
+            <td><%= result.kcal %></td>
           </tr>
-          <% } %>
+          <%}%>
           <% }); %>
           <tr>
             <td class="when_eat">점심식사</td>
           </tr>
-          <tr>
-            <td>햄버거</td>
-            <td>40.86</td>
-            <td>40.56</td>
-            <td>45.84</td>
-            <td>852</td>
-          </tr>
+          <% results.forEach((result,index) =>{ %>
+            <% if(result.whenfood == 'lunch'){%>
+            <tr>
+              <td><%= result.foodname %></td>
+              <td><%= result.fat %></td>
+              <td><%= result.tan %></td>
+              <td><%= result.dan %></td>
+              <td><%= result.kcal %></td>
+            </tr>
+            <%}%>
+            <% }); %>
           <tr>
             <td class="when_eat">저녁식사</td>
           </tr>
-          <tr>
-            <td>햄버거</td>
-            <td>40.86</td>
-            <td>40.56</td>
-            <td>45.84</td>
-            <td>852</td>
-          </tr>
+          <% results.forEach((result,index) =>{ %>
+            <% if(result.whenfood == 'dinner'){%>
+            <tr>
+              <td><%= result.foodname %></td>
+              <td><%= result.fat %></td>
+              <td><%= result.tan %></td>
+              <td><%= result.dan %></td>
+              <td><%= result.kcal %></td>
+            </tr>
+            <%}%>
+            <% }); %>
         </table>
       </div>
       <form action="/cRegisInfo" method="post" class="date_click">

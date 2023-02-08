@@ -71,6 +71,7 @@
 
 /* 왼쪽 등록 됐을 때 정보 */
 .calendar .c_regis_results_wrap{
+    display: none;
     padding: 0 30px;
     box-sizing: border-box;
     color: #fff;
@@ -151,7 +152,7 @@
     font-weight: bold;
 }
 .calendar .date_click{
-    display: block;
+    display: none;
 }
 
 .calendar .c_regis_info {
