@@ -68,10 +68,14 @@
 .calendar .calendarbox_wrap {
     display: flex;
 }
-
+/* 왼쪽 처음 들어왔을 때 */
+.calendar .first_cal_left_wrap{
+    text-align: center;
+    color: #fff;
+    font-weight: bold;
+}
 /* 왼쪽 등록 됐을 때 정보 */
 .calendar .c_regis_results_wrap{
-    display: none;
     padding: 0 30px;
     box-sizing: border-box;
     color: #fff;
@@ -111,11 +115,23 @@
 .calendar .c_regis_results_wrap table td{
     font-size: 0.625rem;
 }
+.calendar .c_regis_results_wrap>button{
+    display: block;
+    margin: 20px auto;
+    width: 60%;
+    border-radius: 20px;
+    background-color: #fff;
+    border: 0;
+    padding: 5px;
+    box-sizing: border-box;
+    font-weight: bold;
+    font-size: 0.75rem;
+}
+
 
 /* 왼쪽 등록정보 */
 .calendar .calendarbox_wrap>.c_left_regis_info {
     width: 40.9090%;
-    max-height: 592px;
     background-color: #91CF00;
     display: flex;
     flex-direction: column;
@@ -151,8 +167,8 @@
     font-size: 1.56rem;
     font-weight: bold;
 }
-.calendar .date_click{
-    display: none;
+.calendar .cal_result_box{
+    max-height: 300px;
 }
 
 .calendar .c_regis_info {

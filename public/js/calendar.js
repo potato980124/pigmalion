@@ -3,6 +3,9 @@ let cInputWrap = document.querySelectorAll(".c_regis_input_wrap");
 let cResultBox = document.querySelectorAll(".c_regis_input_result");
 let cRegiCheckWhat = document.querySelectorAll(".c_regis_check_wrap");
 let cRegisWhatWrap = document.querySelectorAll(".c_regis_what_wrap");
+let dateClick = document.querySelectorAll(".date_click");
+let subtit = document.querySelector(".c_y_m_d_subtit");
+
 // 목표달성률
 let cWeight = document.querySelector(".cWeight");
 let replaceWeight = 68;
@@ -91,21 +94,12 @@ function buildCalendar() {
   document.getElementById("yearMonth").innerHTML = today_yearMonth;
   //달력 클릭시
   let targetDate = document.querySelectorAll(".target_date");
-  let dateClick = document.querySelectorAll(".date_click");
-  let subtit = document.querySelector(".c_y_m_d_subtit");
-  let cRegiInput = document.querySelectorAll;
   targetDate.forEach((e) => {
-    e.addEventListener("click", (e) => {
-      //등록된 정보가 있는지 없는지
-      let cRegisResultsWrap = document.querySelector(".c_regis_results_wrap");
-      if(subtit.innerText){
-        cRegisResultsWrap.style.display = 'block';
-      }
-      // subtit.innerHTML = today_yearMonth + `${e.innerText}일`;
-      for (i = 0; i < targetDate.length; i++) {
-        targetDate[i].style.color = "#000";
-      }
-      e.style.color = "#91CF00";
+    e.addEventListener("click", (/* e */) => {
+      // for (i = 0; i < targetDate.length; i++) {
+      //   targetDate[i].style.color = "#000";
+      // }
+      // e.style.color = "#91CF00";
       dateClick.forEach((e) => {
         cInputWrap.forEach((e) => {
           e.children[0].value = "";
@@ -121,13 +115,13 @@ function buildCalendar() {
         });
         e.style.display = "block";
       });
-      //post로 전송 할 때 언제,유저 id 히든인풋에 value 값으로 넣어주는 함수
-      let when = document.querySelector(".food_info_when");
-      when.value = subtit.innerText;
     });
   });
 }
 buildCalendar();
+
+// 중간전역변수
+let targetDate = document.querySelectorAll(".target_date");
 
 function deleteCalendar() {
   while (calendar.rows.length > 2) {
@@ -171,6 +165,31 @@ cInputWrap.forEach((e, index) => {
     cResultBox[index].style.display = "block";
   });
 });
+// 등록결과 유무시
+let cRegisResultsWrap = document.querySelector(".c_regis_results_wrap");
+let calResultBox = document.querySelector(".cal_result_box");
+// console.log(subtit.innerText);
+if (cRegisResultsWrap === null && subtit.innerText != "") {
+  calResultBox.style.display = "block";
+}else{
+  calResultBox.innerHTML= "";
+}
+//달력 정보에 날짜가 undifined일시
+// console.log(subtit.innerText);
+if (subtit.innerText == "undefined") {
+  subtit.innerText = "";
+}
+// 처음 소개문구 없어질 떄
+let firstCalLeftWrap = document.querySelector('.first_cal_left_wrap');
+if( cRegisResultsWrap !== null || calResultBox.style.display == "block"){
+  firstCalLeftWrap.style.display = 'none';
+}
+// 클릭 했을 때 해당 날짜 컬러 변경
+targetDate.forEach((e)=>{
+  // console.log(e.innerText);
+  let dateTrue = subtit.innerText.indexOf(e.innerText);
+  console.log(dateTrue);
+})
 // 음식 데이터
 let apiFoodDatas = {};
 let atFoodName = [];
@@ -379,3 +398,8 @@ function foodSearchDinner() {
       }
     });
 }
+//post로 전송 할 때 언제,유저 id 히든인풋에 value 값으로 넣어주는 함수
+let when = document.querySelector(".food_info_when");
+console.log(subtit.innerText);
+when.value = subtit.innerText;
+console.log(when.value);

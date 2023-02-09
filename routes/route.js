@@ -99,7 +99,7 @@ router.post("/loginCheck", (req, res) => {
 router.get("/calendar", (req, res) => {
   if (req.session.is_logined == true) {
     let userid = req.session.userId;
-    let todayYearMonthDate = decodeURIComponent(req.query.id);
+    let todayYearMonthDate = req.query.id;
     console.log(todayYearMonthDate);
     db.getUsercalendar(userid, todayYearMonthDate, (results) => {
       // console.log(results);
@@ -108,6 +108,7 @@ router.get("/calendar", (req, res) => {
         cWeight: req.session.cWeight,
         tWeight: req.session.tWeight,
         results: results,
+        todayYearMonthDate:todayYearMonthDate
       });
     });
   } else {

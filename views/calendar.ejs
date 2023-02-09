@@ -20,11 +20,15 @@
       <div class="c_regis_info_tit">
         <h1>칼로리 캘린더</h1>
         <h2 class="date_click c_y_m_d_subtit">
-          <% if(results.length != 0){ %>
-            <%= results[0].whenregis %>
-          <%}%>
+          <%if(results.length == 0){%> <%= todayYearMonthDate %> <%}%>
+          <%if(results.length > 0){%> <%= results[0].whenregis %> <%}%>
         </h2>
       </div>
+      <!-- 맨처음 페이지 들어왔을 때 -->
+      <div class="first_cal_left_wrap">
+        <p>달력에서 날짜를 클릭 해주세요!</p>
+      </div>
+      <%if(results.length > 0){%>
       <div class="c_regis_results_wrap">
         <table>
           <colgroup>
@@ -35,12 +39,12 @@
             <col width="17.5%" />
           </colgroup>
           <tr>
-              <th class="nutri_title">오늘의 영양정보</th>
-              <th>지방(g)</th>
-              <th>탄수화물(g)</th>
-              <th>단백질(g)</th>
-              <th>칼로리(kcal)</th>
-            </tr>
+            <th class="nutri_title">오늘의 영양정보</th>
+            <th>지방(g)</th>
+            <th>탄수화물(g)</th>
+            <th>단백질(g)</th>
+            <th>칼로리(kcal)</th>
+          </tr>
           <tr>
             <td></td>
             <td>40.86</td>
@@ -51,8 +55,8 @@
           <tr>
             <td class="when_eat">아침식사</td>
           </tr>
-          <% results.forEach((result,index) =>{ %>
-          <% if(result.whenfood == 'morning'){%>
+          <% results.forEach((result,index) =>{ %> <% if(result.whenfood ==
+          'morning'){%>
           <tr>
             <td><%= result.foodname %></td>
             <td><%= result.fat %></td>
@@ -60,39 +64,42 @@
             <td><%= result.dan %></td>
             <td><%= result.kcal %></td>
           </tr>
-          <%}%>
-          <% }); %>
+          <%}%> <% }); %>
           <tr>
             <td class="when_eat">점심식사</td>
           </tr>
-          <% results.forEach((result,index) =>{ %>
-            <% if(result.whenfood == 'lunch'){%>
-            <tr>
-              <td><%= result.foodname %></td>
-              <td><%= result.fat %></td>
-              <td><%= result.tan %></td>
-              <td><%= result.dan %></td>
-              <td><%= result.kcal %></td>
-            </tr>
-            <%}%>
-            <% }); %>
+          <% results.forEach((result,index) =>{ %> <% if(result.whenfood ==
+          'lunch'){%>
+          <tr>
+            <td><%= result.foodname %></td>
+            <td><%= result.fat %></td>
+            <td><%= result.tan %></td>
+            <td><%= result.dan %></td>
+            <td><%= result.kcal %></td>
+          </tr>
+          <%}%> <% }); %>
           <tr>
             <td class="when_eat">저녁식사</td>
           </tr>
-          <% results.forEach((result,index) =>{ %>
-            <% if(result.whenfood == 'dinner'){%>
-            <tr>
-              <td><%= result.foodname %></td>
-              <td><%= result.fat %></td>
-              <td><%= result.tan %></td>
-              <td><%= result.dan %></td>
-              <td><%= result.kcal %></td>
-            </tr>
-            <%}%>
-            <% }); %>
+          <% results.forEach((result,index) =>{ %> <% if(result.whenfood ==
+          'dinner'){%>
+          <tr>
+            <td><%= result.foodname %></td>
+            <td><%= result.fat %></td>
+            <td><%= result.tan %></td>
+            <td><%= result.dan %></td>
+            <td><%= result.kcal %></td>
+          </tr>
+          <%}%> <% }); %>
         </table>
+        <button>캘린더 수정</button>
       </div>
-      <form action="/cRegisInfo" method="post" class="date_click">
+      <%}%>
+      <form
+        action="/cRegisInfo"
+        method="post"
+        class="date_click cal_result_box"
+      >
         <ul class="c_regis_info">
           <input class="food_info_when" name="food_info_when" type="hidden" />
           <input class="m_foods_length" name="m_foods_length" type="hidden" />
@@ -158,7 +165,7 @@
             </div>
           </li>
           <li>
-            <button type="submit">등록하기</button>
+            <button type="submit">캘린더 등록</button>
           </li>
         </ul>
       </form>
