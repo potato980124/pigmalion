@@ -19,7 +19,7 @@ let totalCalc =
   ((replaceWeight - parseInt(tWeight.innerText)) /
     (parseInt(cWeight.innerText) - parseInt(tWeight.innerText))) *
   100;
-console.log(totalCalc);
+// console.log(totalCalc);
 
 if (totalCalc == 0) {
   cWeightPig.style.display = "none";
@@ -31,19 +31,24 @@ if (totalCalc == 0) {
   cWeightPig.style.transform = `translateX(${totalCalc}%)`;
 }
 // 달력
-
-let today = new Date();
-
+let today = "";
+if(!subtit.innerText){
+  today = new Date();
+}else{
+  today = new Date(subtit.innerText);
+}
+// let today = new Date();
+let tMonth = today.getMonth() + 1;
 let todayYear = today.getFullYear();
-let todayMonth = today.getMonth() + 1;
+let todayMonth = ("00" + tMonth).slice(-2);
 let calendar = document.getElementById("calendar_table");
 
 function buildCalendar() {
-  let firstDate = new Date(todayYear, todayMonth - 1, 1);
-  let lastDate = new Date(todayYear, todayMonth, 0);
+  let firstDate = new Date(todayYear, tMonth - 1, 1);
+  let lastDate = new Date(todayYear, tMonth, 0);
   let day = firstDate.getDay();
   let week = Math.ceil(lastDate.getDate() / 7) + 1;
-  let today_yearMonth = todayYear + "년" + todayMonth + "월";
+  let today_yearMonth = todayYear + "년" + tMonth + "월";
   let leftDays = 7; // setDays 와 반비례
   let setDays = 1; // leftDays 와 반비례
   let nextMonthDate = 1;
@@ -60,11 +65,11 @@ function buildCalendar() {
         leftDays -= 1;
         nextMonthDate += 1;
       } else {
-        let todayYearMonthDate =
-          todayYear + "년" + todayMonth + "월" + setDays + "일";
+        let todayYearMonthDate = todayYear + "-" + ("00" + tMonth).slice(-2) + "-" + ("00" + setDays).slice(-2);
         row.insertCell().innerHTML = `<p class="target_date" onclick="javascript:location.href='/calendar?id=${todayYearMonthDate}'">${setDays}</p>`;
         setDays += 1;
         leftDays -= 1;
+        // console.log(setDays);
       }
     }
     leftDays = 7;
@@ -75,7 +80,8 @@ function buildCalendar() {
     while (setDays != lastDate.getDate()) {
       setDays++;
       leftDays--;
-      row.insertCell().innerHTML = setDays;
+      let todayYearMonthDate = todayYear + "-" + ("00" + tMonth).slice(-2) + "-" + ("00" + setDays).slice(-2);
+      row.insertCell().innerHTML = `<p class="target_date" onclick="javascript:location.href='/calendar?id=${todayYearMonthDate}'">${setDays}</p>`;
     }
     while (leftDays != 0) {
       row.insertCell().innerHTML = nextMonthDate;
@@ -96,10 +102,6 @@ function buildCalendar() {
   let targetDate = document.querySelectorAll(".target_date");
   targetDate.forEach((e) => {
     e.addEventListener("click", (/* e */) => {
-      // for (i = 0; i < targetDate.length; i++) {
-      //   targetDate[i].style.color = "#000";
-      // }
-      // e.style.color = "#91CF00";
       dateClick.forEach((e) => {
         cInputWrap.forEach((e) => {
           e.children[0].value = "";
@@ -113,7 +115,6 @@ function buildCalendar() {
         cRegisWhatWrap.forEach((e) => {
           e.innerHTML = "";
         });
-        e.style.display = "block";
       });
     });
   });
@@ -130,24 +131,24 @@ function deleteCalendar() {
 }
 
 function prevMonth() {
-  todayMonth = todayMonth - 1;
-  if (todayMonth == 0) {
-    todayMonth = 12;
+  tMonth = tMonth - 1;
+  if (tMonth == 0) {
+    tMonth = 12;
     todayYear -= 1;
   }
   deleteCalendar();
-  today = new Date(todayYear, todayMonth - 1);
+  today = new Date(todayYear, tMonth - 1);
   buildCalendar();
 }
 
 function nextMonth() {
-  todayMonth += 1;
-  if (todayMonth == 13) {
-    todayMonth = 1;
+  tMonth += 1;
+  if (tMonth == 13) {
+    tMonth = 1;
     todayYear = todayYear + 1;
   }
   deleteCalendar();
-  today = new Date(todayYear, todayMonth - 1);
+  today = new Date(todayYear, tMonth - 1);
   buildCalendar();
 }
 //fetch로 보낼 데이터 처리 ajsx로 보내려 했는데 안 됐다~~~
@@ -165,14 +166,14 @@ cInputWrap.forEach((e, index) => {
     cResultBox[index].style.display = "block";
   });
 });
+
 // 등록결과 유무시
 let cRegisResultsWrap = document.querySelector(".c_regis_results_wrap");
 let calResultBox = document.querySelector(".cal_result_box");
-// console.log(subtit.innerText);
 if (cRegisResultsWrap === null && subtit.innerText != "") {
-  calResultBox.style.display = "block";
+    calResultBox.style.display = "block";
 }else{
-  calResultBox.innerHTML= "";
+  calResultBox.style.display = "none";
 }
 //달력 정보에 날짜가 undifined일시
 // console.log(subtit.innerText);
@@ -186,9 +187,10 @@ if( cRegisResultsWrap !== null || calResultBox.style.display == "block"){
 }
 // 클릭 했을 때 해당 날짜 컬러 변경
 targetDate.forEach((e)=>{
-  // console.log(e.innerText);
-  let dateTrue = subtit.innerText.indexOf(e.innerText);
-  console.log(dateTrue);
+  console.log(subtit.innerText.slice(8,10));
+  if(subtit.innerText.slice(8,10) == ("00" + e.innerText).slice(-2)){
+    e.style.color = "#91CF00";
+  }
 })
 // 음식 데이터
 let apiFoodDatas = {};
@@ -398,8 +400,36 @@ function foodSearchDinner() {
       }
     });
 }
+// db에서 받아온 영양소 정보들 합산
+let nutriSum = document.querySelector('.nutri_sum');
+let nutriResults = document.querySelectorAll('.nutri_result');
+let fatSumResult = nutriSum.children[1];
+let tanSumResult = nutriSum.children[2];
+let danSumResult = nutriSum.children[3];
+let kcalSumResult = nutriSum.children[4];
+let fatSum = 0;
+let tanSum = 0;
+let danSum = 0;
+let kcalSum = 0;
+nutriResults.forEach((e)=>{
+  console.log(Number(e.children[1].innerText));
+  fatSum += Number(e.children[1].innerText);
+  tanSum += Number(e.children[2].innerText);
+  danSum += Number(e.children[3].innerText);
+  kcalSum += Number(e.children[4].innerText);
+})
+fatSumResult.innerText = fatSum;
+tanSumResult.innerText = tanSum;
+danSumResult.innerText = danSum;
+kcalSumResult.innerText = kcalSum;
 //post로 전송 할 때 언제,유저 id 히든인풋에 value 값으로 넣어주는 함수
 let when = document.querySelector(".food_info_when");
-console.log(subtit.innerText);
 when.value = subtit.innerText;
 console.log(when.value);
+
+
+
+
+
+
+
