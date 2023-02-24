@@ -71,7 +71,7 @@
           <% results.forEach((result,index) =>{ %> <% if(result.whenfood ==
           'lunch'){%>
           <tr class="nutri_result">
-            <td><%= result.foodname %> <strong>x</strong></td>
+            <td><%= result.foodname %></td>
             <td><%= result.fat %></td>
             <td><%= result.tan %></td>
             <td><%= result.dan %></td>
@@ -84,7 +84,7 @@
           <% results.forEach((result,index) =>{ %> <% if(result.whenfood ==
           'dinner'){%>
           <tr class="nutri_result">
-            <td><%= result.foodname %> <strong>x</strong></td>
+            <td><%= result.foodname %></td>
             <td><%= result.fat %></td>
             <td><%= result.tan %></td>
             <td><%= result.dan %></td>
@@ -92,7 +92,11 @@
           </tr>
           <%}%> <% }); %>
         </table>
-        <button>캘린더 수정하기</button>
+        <% let whenregis = []; %>
+        <% results.forEach((result,index) =>{ %> <% if(result.whenregis == todayYearMonthDate){%>
+        <% whenregis.push(result.whenregis) %>
+        <%}%> <% }); %>
+        <button onclick="location.href=`/deleteInfo?id=<%= whenregis[0] %>`">캘린더 삭제하기</button>
       </div>
       <%}%>
       <form

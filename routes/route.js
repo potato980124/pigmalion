@@ -211,5 +211,12 @@ router.post("/cRegisInfo", (req, res) => {
     }
   );
 });
+// 캘린더 수정 클릭시 해당 데이터 삭제
+router.get('/deleteInfo',(req,res)=>{
+  let whenregis = req.query.id;
+  db.deleteCalendar(whenregis,()=>{
+    res.redirect("/calendar");
+  })
+})
 
 module.exports = router;

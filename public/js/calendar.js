@@ -400,6 +400,10 @@ function foodSearchDinner() {
       }
     });
 }
+//post로 전송 할 때 언제,유저 id 히든인풋에 value 값으로 넣어주는 함수
+let when = document.querySelector(".food_info_when");
+when.value = subtit.innerText;
+console.log(when.value);
 // db에서 받아온 영양소 정보들 합산
 let nutriSum = document.querySelector('.nutri_sum');
 let nutriResults = document.querySelectorAll('.nutri_result');
@@ -418,14 +422,10 @@ nutriResults.forEach((e)=>{
   danSum += Number(e.children[3].innerText);
   kcalSum += Number(e.children[4].innerText);
 })
-fatSumResult.innerText = fatSum;
-tanSumResult.innerText = tanSum;
-danSumResult.innerText = danSum;
-kcalSumResult.innerText = kcalSum;
-//post로 전송 할 때 언제,유저 id 히든인풋에 value 값으로 넣어주는 함수
-let when = document.querySelector(".food_info_when");
-when.value = subtit.innerText;
-console.log(when.value);
+fatSumResult.innerText = fatSum.toFixed(2);
+tanSumResult.innerText = tanSum.toFixed(2);
+danSumResult.innerText = danSum.toFixed(2);
+kcalSumResult.innerText = kcalSum.toFixed(2);
 
 
 

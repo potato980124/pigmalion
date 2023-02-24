@@ -51,9 +51,17 @@ function getUsercalendar(userid,todayYearMonthDate,callback){
         callback(results);
     })
 }
+//칼로리 캘린더 해당 날짜 데이터 지우는 함수
+function deleteCalendar(whenregis,callback){
+    connection.query(`delete from usercalendarinfo where whenregis ='${whenregis}'`,(err)=>{
+        if(err) throw err;
+        callback();
+    })
+}
     module.exports = {
         insertJoinData,
         loginCheck,
         insertUsercalendar,
-        getUsercalendar
+        getUsercalendar,
+        deleteCalendar
     };
