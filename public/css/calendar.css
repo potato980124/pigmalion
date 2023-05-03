@@ -62,7 +62,9 @@
 .calendar .cWeight_img>img {
     transform: scalex(-1);
 }
-
+.calendar .originWeight_wrap>.originWeight{
+    display: none;
+}
 
 /* 등록정보,달력 */
 .calendar .calendarbox_wrap {
@@ -361,4 +363,56 @@
 
 .calendar #day {
     color: #91CF00;
+}
+
+@media(max-width:1100px) {
+    .calendar {
+        height: auto;
+        padding-top: 200px;
+        padding-bottom: 200px;
+    }
+.calendar .calendarbox_wrap {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+}
+.calendar .processbox_bg {
+    position: relative;
+    width: 100%;
+    height: 100px;
+    border-radius: 20px;
+    background-image: url(../img/잔디.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    display: flex;
+    justify-content: right;
+    font-size: 12px;
+    font-weight: bold;
+    color: #91CF00;
+}
+.calendar .calendarbox_wrap>.c_left_regis_info {
+    width: 100%;
+    background-color: #91CF00;
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    padding: 25px 0;
+    box-sizing: border-box;
+    overflow-y: scroll;
+}
+.calendar .calendarbox_wrap>.right_calendar {
+    width: 100%;
+    border-top: 1px solid #91CF00;
+    border-right: 1px solid #91CF00;
+    border-bottom: 1px solid #91CF00;
+    border-left: 1px solid #91CF00;
+    border-radius: 20px;
+    padding: 50px;
+    box-sizing: border-box;
+}
+
+.calendar .c_regis_results_wrap{
+    padding: 0 60px;
+}
 }

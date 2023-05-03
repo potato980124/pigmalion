@@ -8,18 +8,19 @@ let subtit = document.querySelector(".c_y_m_d_subtit");
 
 // 목표달성률
 let cWeight = document.querySelector(".cWeight");
-let replaceWeight = 68;
 let tWeight = document.querySelector(".tWeight");
+let originWeight = document.querySelector(".originWeight");
 
 let cWeightPig = document.querySelector(".cWeight_pig");
 let tWeightThropy = document.querySelector(".tWeight_thropy");
 let tSucsess = document.querySelector(".t_sucsess");
-
+console.log(originWeight);
+console.log(cWeight);
+console.log(tWeight);
 let totalCalc =
-  ((replaceWeight - parseInt(tWeight.innerText)) /
-    (parseInt(cWeight.innerText) - parseInt(tWeight.innerText))) *
-  100;
-// console.log(totalCalc);
+  ((parseInt(cWeight.innerText) - parseInt(tWeight.innerText)) /
+    (parseInt(originWeight.innerText) - parseInt(tWeight.innerText))) *100;
+console.log(totalCalc);
 
 if (totalCalc == 0) {
   cWeightPig.style.display = "none";
@@ -404,6 +405,16 @@ function foodSearchDinner() {
 let when = document.querySelector(".food_info_when");
 when.value = subtit.innerText;
 console.log(when.value);
+//post전송시 몸무게 필수 입력
+function must_kg(){
+  let mustKg = document.querySelector('.must_kg');
+  if(mustKg.value==''){
+    alert("현재 몸무게를 입력해주세요!");
+    return false;
+  }
+  document.cal_submit.submit();
+}
+
 // db에서 받아온 영양소 정보들 합산
 let nutriSum = document.querySelector('.nutri_sum');
 let nutriResults = document.querySelectorAll('.nutri_result');

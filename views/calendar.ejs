@@ -4,12 +4,15 @@
     <div class="t_sucsess">목표달성!!</div>
     <ul class="processbox_bg">
       <li class="cWeight_pig">
-        <p class="cWeight"><%= cWeight %><strong>kg</strong></p>
+        <p class="cWeight"><%= newWeight[0].newWeight %><strong>kg</strong></p>
         <div class="cWeight_img"><img src="../img/pig.gif" alt="" /></div>
       </li>
       <li class="tWeight_thropy">
         <p class="tWeight"><%= tWeight %><strong>kg</strong></p>
         <div class="tWeight_img"><img src="../img/award.gif" alt="" /></div>
+      </li>
+      <li class="originWeight_wrap">
+        <p class="originWeight"><%= cWeight %></p>
       </li>
     </ul>
   </div>
@@ -103,6 +106,7 @@
         action="/cRegisInfo"
         method="post"
         class="date_click cal_result_box"
+        name="cal_submit"
       >
         <ul class="c_regis_info">
           <input class="food_info_when" name="food_info_when" type="hidden" />
@@ -164,12 +168,12 @@
             <div class="c_regis_info_weight">
               <h3>현재 몸무게</h3>
               <div class="c_regis_input_wrap">
-                <input type="text" name="currentKg" /><strong>kg</strong>
+                <input class="must_kg" type="text" name="currentKg" /><strong>kg</strong>
               </div>
             </div>
           </li>
           <li>
-            <button type="submit">캘린더 등록</button>
+            <button type="button" onclick="must_kg()">캘린더 등록</button>
           </li>
         </ul>
       </form>

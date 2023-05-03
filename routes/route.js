@@ -16,7 +16,7 @@ router.use(
   session({
     secret: "blackzat", // 데이터를 암호화 하기 위해 필요한 옵션
     resave: false, // 요청이 왔을때 세션을 수정하지 않더라도 다시 저장소에 저장되도록
-    saveUninitialized: true, // 세션이 필요하면 세션을 실행시칸다(서버에 부담을 줄이기 위해)
+    saveUninitialized: false, // 세션이 필요하면 세션을 실행시칸다(서버에 부담을 줄이기 위해)
     store: new FileStore(), // 세션이 데이터를 저장하는 곳
   })
 );
@@ -101,12 +101,13 @@ router.get("/calendar", (req, res) => {
     let userid = req.session.userId;
     let todayYearMonthDate = req.query.id;
     console.log(todayYearMonthDate);
-    db.getUsercalendar(userid, todayYearMonthDate, (results) => {
+    db.getUsercalendar(userid, todayYearMonthDate, (results,joinresults) => {
       // console.log(results);
       res.render("calendar", {
         is_logined: req.session.is_logined,
         cWeight: req.session.cWeight,
         tWeight: req.session.tWeight,
+        newWeight: joinresults,
         results: results,
         todayYearMonthDate:todayYearMonthDate
       });
@@ -131,7 +132,11 @@ router.post("/cRegisInfo", (req, res) => {
   let userid = req.session.userId;
   let currentKg = param["currentKg"];
   // console.log(param);
-  // console.log(mListLength);
+  console.log(mListLength);
+  if (mListLength === 0 || lListLength === 0 || dListLength === 0) {
+    res.redirect("/calendar");
+    return;
+  }
   //아침,점심,저녁
   for (i = 0; i < mListLength; i++) {
     if (mListLength == 1) {
