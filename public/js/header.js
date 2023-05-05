@@ -16,6 +16,7 @@ let indexBody = document.getElementsByTagName('body');
 
 
 console.log(hamBtn.children);
+headerHover();
 window.onscroll = function () {
   let windowTop = window.scrollY;
   // 스크롤 세로값이 헤더높이보다 크거나 같으면 
@@ -32,10 +33,10 @@ window.onscroll = function () {
   }
   // 아니면 클래스 'drop'을 제거
   else {
-    headerHover()
+    headerHover();
     header.classList.remove("header_drop");
     gnbColor.forEach((a) => {
-      a.firstElementChild.style.color = "";
+      a.firstElementChild.style.color = "#ddd";
     })
     for (i = 0; i < hamBtn.children.length;i++){
       hamBtn.children[i].style.backgroundColor = "#fff";
@@ -55,7 +56,7 @@ function headerHover() {
     e.addEventListener('mouseleave', () => {
       setTimeout(() => {
         gnbUnderline[index].style.width = '0';
-        e.firstElementChild.style.color = '';
+        e.firstElementChild.style.color = '#ddd';
       }, 300);
     })
   })
