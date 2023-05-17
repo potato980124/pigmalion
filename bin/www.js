@@ -1,7 +1,7 @@
 let app = require('../app');
-let PORT = process.env.PORT || 5000;
+let PORT = 5900;
 
-app.listen(PORT, () => {
+app.listen(process.env.PORT || PORT, () => {
   console.log(`${PORT}로 express 실행`);
   console.log(`http://localhost:${PORT}`);
 })
