@@ -1,6 +1,6 @@
 var mysql = require('mysql2');
 var connection = mysql.createConnection({
-    host: 'ldatabase-1.ckqtywedccws.ap-northeast-1.rds.amazonaws.com',
+    host: 'database-1.ckqtywedccws.ap-northeast-1.rds.amazonaws.com',
     user: 'admin',
     password: 'ghdqjawls12',
     database: 'pigmalion',
