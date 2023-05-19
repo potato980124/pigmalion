@@ -12,37 +12,39 @@ const FileStore = require("session-file-store")(session); // 세션을 파일에
 // const request = require("request");
 
 // 세션 (미들웨어) 6
-router.use(
-  session({
-    secret: process.env.COOKIE_SECRET || 'blackzat', // 데이터를 암호화 하기 위해 필요한 옵션
-    resave: false, // 요청이 왔을때 세션을 수정하지 않더라도 다시 저장소에 저장되도록
-    saveUninitialized: false, // 세션이 필요하면 세션을 실행시칸다(서버에 부담을 줄이기 위해)
-    store: new FileStore(), // 세션이 데이터를 저장하는 곳
-  })
-);
+// router.use(
+//   session({
+//     secret: process.env.COOKIE_SECRET || 'blackzat', // 데이터를 암호화 하기 위해 필요한 옵션
+//     resave: false, // 요청이 왔을때 세션을 수정하지 않더라도 다시 저장소에 저장되도록
+//     saveUninitialized: false, // 세션이 필요하면 세션을 실행시칸다(서버에 부담을 줄이기 위해)
+//     store: new FileStore(), // 세션이 데이터를 저장하는 곳
+//   })
+// );
 
 router.get("/", (req, res) => {
-  if (req.session.is_logined == true) {
-    res.render("main", {
-      is_logined: req.session.is_logined,
-    });
-  } else {
-    res.render("main", {
-      is_logined: false,
-    });
-  }
+  res.render("main");
+  // if (req.session.is_logined == true) {
+  //   res.render("main", {
+  //     is_logined: req.session.is_logined,
+  //   });
+  // } else {
+  //   res.render("main", {
+  //     is_logined: false,
+  //   });
+  // }
 });
 
 router.get("/login", (req, res) => {
-  if (req.session.is_logined == true) {
-    res.render("login", {
-      is_logined: req.session.is_logined,
-    });
-  } else {
-    res.render("login", {
-      is_logined: false,
-    });
-  }
+  res.render("login");
+  // if (req.session.is_logined == true) {
+  //   res.render("login", {
+  //     is_logined: req.session.is_logined,
+  //   });
+  // } else {
+  //   res.render("login", {
+  //     is_logined: false,
+  //   });
+  // }
 });
 router.get("/logout", (req, res) => {
   req.session.destroy(function (err) {
@@ -50,15 +52,16 @@ router.get("/logout", (req, res) => {
   });
 });
 router.get("/join", (req, res) => {
-  if (req.session.is_logined == true) {
-    res.render("join", {
-      is_logined: req.session.is_logined,
-    });
-  } else {
-    res.render("join", {
-      is_logined: false,
-    });
-  }
+  res.render("join");
+  // if (req.session.is_logined == true) {
+  //   res.render("join", {
+  //     is_logined: req.session.is_logined,
+  //   });
+  // } else {
+  //   res.render("join", {
+  //     is_logined: false,
+  //   });
+  // }
 });
 router.post("/joinInfo", (req, res) => {
   let param = JSON.parse(JSON.stringify(req.body));
@@ -97,7 +100,7 @@ router.post("/loginCheck", (req, res) => {
 
 //달력 페이지
 router.get("/calendar", (req, res) => {
-  if (req.session.is_logined == true) {
+  // if (req.session.is_logined == true) {
     let userid = req.session.userId;
     let todayYearMonthDate = req.query.id;
     console.log(todayYearMonthDate);
@@ -112,11 +115,11 @@ router.get("/calendar", (req, res) => {
         todayYearMonthDate:todayYearMonthDate
       });
     });
-  } else {
-    res.send(
-      `<script>alert('로그인이 필요한 서비스입니다.'); document.location.href='/login';</script>`
-    );
-  }
+  // } else {
+  //   res.send(
+  //     `<script>alert('로그인이 필요한 서비스입니다.'); document.location.href='/login';</script>`
+  //   );
+  // }
 });
 
 
