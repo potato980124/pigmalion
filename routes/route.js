@@ -6,10 +6,10 @@ const multer = require("multer");
 const path = require("path");
 const db = require("./../db.js");
 const session = require("express-session");
-const crypto = require("crypto");
+// const crypto = require("crypto");
 const FileStore = require("session-file-store")(session); // 세션을 파일에 저장
-const cookieParser = require("cookie-parser");
-const request = require("request");
+// const cookieParser = require("cookie-parser");
+// const request = require("request");
 
 // 세션 (미들웨어) 6
 router.use(
