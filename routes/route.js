@@ -5,21 +5,12 @@ const router = express.Router();
 const multer = require("multer");
 const path = require("path");
 const db = require("./../db.js");
-// const session = require("express-session");
-// const crypto = require("crypto");
-// const FileStore = require("session-file-store")(session); // 세션을 파일에 저장
+const session = require("express-session");
+const crypto = require("crypto");
+const FileStore = require("session-file-store")(session); // 세션을 파일에 저장
 const cookieParser = require("cookie-parser");
-// const request = require("request");
+const request = require("request");
 
-// 세션 (미들웨어) 6
-// router.use(
-//   session({
-//     secret: 'blackzat', // 데이터를 암호화 하기 위해 필요한 옵션
-//     resave: false, // 요청이 왔을때 세션을 수정하지 않더라도 다시 저장소에 저장되도록
-//     saveUninitialized: true, // 세션이 필요하면 세션을 실행시칸다(서버에 부담을 줄이기 위해)
-//     store: new FileStore(), // 세션이 데이터를 저장하는 곳
-//   })
-// );
 
 router.get("/", (req, res) => {
   if (req.session.is_logined == true) {
