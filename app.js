@@ -4,8 +4,26 @@ const cookieParser = require('cookie-parser');
 const routers = require('./routes/route'); //라우트스 파일에있는 라우트를 불러오겠다.
 const app = express();
 const path = require('path');
+const session = require("express-session");
+const MySQLStore = require("express-mysql-session")(session);
+const FileStore = require("session-file-store")(session); // 세션을 파일에 저장
 const bodyParser = require('body-parser');
 const expressLayout = require('express-ejs-layouts');
+const config = {
+  host: 'database-1.ckqtywedccws.ap-northeast-1.rds.amazonaws.com',
+  port: process.env.PORT,
+  user: 'admin',
+  password: 'ghdqjawls12',
+  database: 'pigmalion',
+};
+app.use(
+  session({
+    secret: 'blackzat', // 데이터를 암호화 하기 위해 필요한 옵션
+    resave: false, // 요청이 왔을때 세션을 수정하지 않더라도 다시 저장소에 저장되도록
+    saveUninitialized: true, // 세션이 필요하면 세션을 실행시칸다(서버에 부담을 줄이기 위해)
+    store: new MySQLStore(config),
+  })
+);
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
