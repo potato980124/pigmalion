@@ -13,7 +13,7 @@ const cookieParser = require("cookie-parser");
 const request = require("request");
 const config = {
   host: 'database-1.ckqtywedccws.ap-northeast-1.rds.amazonaws.com',
-  port: 3306,
+  port: process.env.PORT,
   user: 'admin',
   password: 'ghdqjawls12',
   database: 'pigmalion',
