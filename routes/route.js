@@ -11,16 +11,16 @@ const FileStore = require("session-file-store")(session); // 세션을 파일에
 const cookieParser = require("cookie-parser");
 const request = require("request");
 
-// router.use(
-//   session({
-//     secret: 'blackzat', // 데이터를 암호화 하기 위해 필요한 옵션
-//     resave: false, // 요청이 왔을때 세션을 수정하지 않더라도 다시 저장소에 저장되도록
-//     saveUninitialized: true, // 세션이 필요하면 세션을 실행시칸다(서버에 부담을 줄이기 위해)
-//   })
-// );
+router.use(
+  session({
+    secret: 'blackzat', // 데이터를 암호화 하기 위해 필요한 옵션
+    resave: false, // 요청이 왔을때 세션을 수정하지 않더라도 다시 저장소에 저장되도록
+    saveUninitialized: true, // 세션이 필요하면 세션을 실행시칸다(서버에 부담을 줄이기 위해)
+  })
+);
 
 router.get("/", (req, res) => {
-  if (req.session.is_logined == true) {
+  if (req.session.is_logined) {
     res.render("main", {
       is_logined: req.session.is_logined,
     });
@@ -32,7 +32,7 @@ router.get("/", (req, res) => {
 });
 
 router.get("/login", (req, res) => {
-  if (req.session.is_logined == true) {
+  if (req.session.is_logined) {
     res.render("login", {
       is_logined: req.session.is_logined,
     });
@@ -48,7 +48,7 @@ router.get("/logout", (req, res) => {
   });
 });
 router.get("/join", (req, res) => {
-  if (req.session.is_logined == true) {
+  if (req.session.is_logined) {
     res.render("join", {
       is_logined: req.session.is_logined,
     });
@@ -97,7 +97,7 @@ router.post("/loginCheck", (req, res) => {
 
 //달력 페이지
 router.get("/calendar", (req, res) => {
-  if (req.session.is_logined == true) {
+  if (req.session.is_logined) {
     let userid = req.session.userId;
     let todayYearMonthDate = req.query.id;
     console.log(todayYearMonthDate);
