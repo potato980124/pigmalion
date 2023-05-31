@@ -11,7 +11,7 @@ const bodyParser = require('body-parser');
 const expressLayout = require('express-ejs-layouts');
 const config = {
   host: 'database-1.ckqtywedccws.ap-northeast-1.rds.amazonaws.com',
-  port: process.env.PORT,
+  port: 3306,
   user: 'admin',
   password: 'ghdqjawls12',
   database: 'pigmalion',
