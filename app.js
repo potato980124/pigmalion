@@ -15,6 +15,8 @@ const config = {
   user: 'admin',
   password: 'ghdqjawls12',
   database: 'pigmalion',
+  secure: true,
+  httpOnly: true, 
 };
 app.use(
   session({
