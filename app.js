@@ -24,7 +24,6 @@ app.use(
     store: new MySQLStore(config),
     cookie: {
       maxAge: 24 * 60 * 60 * 1000, // 24시간
-      path: '/',
       httpOnly: true,
       secure: true,
     },
