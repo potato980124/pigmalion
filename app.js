@@ -18,8 +18,8 @@ app.use(
     store: new FileStore(),
     cookie: {
       httpOnly: true,
-      secure: true,
-    },
+      secure: true
+    }
   })
 );
 app.use(express.static(path.join(__dirname, 'public'))); // 익스프레스 안의 스태틱을 사용하는거다 그냥 스태틱이 아님, 얘는 경로를 일일히 세팅 하게 않하려고 써주는것 여기서 경로를 지정 해주는것
