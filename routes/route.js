@@ -87,133 +87,133 @@ router.post("/loginCheck", (req, res) => {
   });
 });
 
-//달력 페이지
-router.get("/calendar", (req, res) => {
-  if (req.session.is_logined) {
-    let userid = req.session.userId;
-    let todayYearMonthDate = req.query.id;
-    console.log(todayYearMonthDate);
-    db.getUsercalendar(userid, todayYearMonthDate, (results,joinresults) => {
-      // console.log(results);
-      res.render("calendar", {
-        is_logined: req.session.is_logined,
-        cWeight: req.session.cWeight,
-        tWeight: req.session.tWeight,
-        newWeight: joinresults,
-        results: results,
-        todayYearMonthDate:todayYearMonthDate
-      });
-    });
-  } else {
-    res.send(
-      `<script>alert('로그인이 필요한 서비스입니다.'); document.location.href='/login';</script>`
-    );
-  }
-});
+// //달력 페이지
+// router.get("/calendar", (req, res) => {
+//   if (req.session.is_logined) {
+//     let userid = req.session.userId;
+//     let todayYearMonthDate = req.query.id;
+//     console.log(todayYearMonthDate);
+//     db.getUsercalendar(userid, todayYearMonthDate, (results,joinresults) => {
+//       // console.log(results);
+//       res.render("calendar", {
+//         is_logined: req.session.is_logined,
+//         cWeight: req.session.cWeight,
+//         tWeight: req.session.tWeight,
+//         newWeight: joinresults,
+//         results: results,
+//         todayYearMonthDate:todayYearMonthDate
+//       });
+//     });
+//   } else {
+//     res.send(
+//       `<script>alert('로그인이 필요한 서비스입니다.'); document.location.href='/login';</script>`
+//     );
+//   }
+// });
 
 
-router.post("/cRegisInfo", (req, res) => {
-  let param = JSON.parse(JSON.stringify(req.body));
-  let foodsListM = [];
-  let mListLength = param[`m_foods_length`];
-  let foodsListLunch = [];
-  let lListLength = param[`l_foods_length`];
-  let foodsListDinner = [];
-  let dListLength = param[`d_foods_length`];
-  let when = param["food_info_when"];
-  let userid = req.session.userId;
-  let currentKg = param["currentKg"];
-  // console.log(param);
-  console.log(mListLength);
-  if (mListLength === 0 || lListLength === 0 || dListLength === 0) {
-    res.redirect("/calendar");
-    return;
-  }
-  //아침,점심,저녁
-  for (i = 0; i < mListLength; i++) {
-    if (mListLength == 1) {
-      foodsListM.push([
-        param[`m_foods_when`],
-        param[`m_foods_name`],
-        param[`m_foods_kcal`],
-        param[`m_foods_tansu`],
-        param[`m_foods_danbak`],
-        param[`m_foods_fat`],
-      ]);
-    } else {
-      foodsListM.push([
-        param[`m_foods_when`][i],
-        param[`m_foods_name`][i],
-        param[`m_foods_kcal`][i],
-        param[`m_foods_tansu`][i],
-        param[`m_foods_danbak`][i],
-        param[`m_foods_fat`][i],
-      ]);
-    }
-  }
-  for (i = 0; i < lListLength; i++) {
-    if (lListLength == 1) {
-      foodsListLunch.push([
-        param[`l_foods_when`],
-        param[`l_foods_name`],
-        param[`l_foods_kcal`],
-        param[`l_foods_tansu`],
-        param[`l_foods_danbak`],
-        param[`l_foods_fat`],
-      ]);
-    } else {
-      foodsListLunch.push([
-        param[`l_foods_when`][i],
-        param[`l_foods_name`][i],
-        param[`l_foods_kcal`][i],
-        param[`l_foods_tansu`][i],
-        param[`l_foods_danbak`][i],
-        param[`l_foods_fat`][i],
-      ]);
-    }
-  }
-  for (i = 0; i < dListLength; i++) {
-    if (dListLength == 1) {
-      foodsListDinner.push([
-        param[`d_foods_when`],
-        param[`d_foods_name`],
-        param[`d_foods_kcal`],
-        param[`d_foods_tansu`],
-        param[`d_foods_danbak`],
-        param[`d_foods_fat`],
-      ]);
-    } else {
-      foodsListDinner.push([
-        param[`d_foods_when`][i],
-        param[`d_foods_name`][i],
-        param[`d_foods_kcal`][i],
-        param[`d_foods_tansu`][i],
-        param[`d_foods_danbak`][i],
-        param[`d_foods_fat`][i],
-      ]);
-    }
-  }
-  // console.log(foodsListM);
-  // console.log(foodsListLunch);
-  // console.log(foodsListDinner);
-  db.insertUsercalendar(
-    userid,
-    when,
-    foodsListM,
-    foodsListLunch,
-    foodsListDinner,
-    currentKg,
-    () => {
-      res.redirect("/calendar");
-    }
-  );
-});
-// 캘린더 수정 클릭시 해당 데이터 삭제
-router.get('/deleteInfo',(req,res)=>{
-  let whenregis = req.query.id;
-  db.deleteCalendar(whenregis,()=>{
-    res.redirect("/calendar");
-  })
-})
+// router.post("/cRegisInfo", (req, res) => {
+//   let param = JSON.parse(JSON.stringify(req.body));
+//   let foodsListM = [];
+//   let mListLength = param[`m_foods_length`];
+//   let foodsListLunch = [];
+//   let lListLength = param[`l_foods_length`];
+//   let foodsListDinner = [];
+//   let dListLength = param[`d_foods_length`];
+//   let when = param["food_info_when"];
+//   let userid = req.session.userId;
+//   let currentKg = param["currentKg"];
+//   // console.log(param);
+//   console.log(mListLength);
+//   if (mListLength === 0 || lListLength === 0 || dListLength === 0) {
+//     res.redirect("/calendar");
+//     return;
+//   }
+//   //아침,점심,저녁
+//   for (i = 0; i < mListLength; i++) {
+//     if (mListLength == 1) {
+//       foodsListM.push([
+//         param[`m_foods_when`],
+//         param[`m_foods_name`],
+//         param[`m_foods_kcal`],
+//         param[`m_foods_tansu`],
+//         param[`m_foods_danbak`],
+//         param[`m_foods_fat`],
+//       ]);
+//     } else {
+//       foodsListM.push([
+//         param[`m_foods_when`][i],
+//         param[`m_foods_name`][i],
+//         param[`m_foods_kcal`][i],
+//         param[`m_foods_tansu`][i],
+//         param[`m_foods_danbak`][i],
+//         param[`m_foods_fat`][i],
+//       ]);
+//     }
+//   }
+//   for (i = 0; i < lListLength; i++) {
+//     if (lListLength == 1) {
+//       foodsListLunch.push([
+//         param[`l_foods_when`],
+//         param[`l_foods_name`],
+//         param[`l_foods_kcal`],
+//         param[`l_foods_tansu`],
+//         param[`l_foods_danbak`],
+//         param[`l_foods_fat`],
+//       ]);
+//     } else {
+//       foodsListLunch.push([
+//         param[`l_foods_when`][i],
+//         param[`l_foods_name`][i],
+//         param[`l_foods_kcal`][i],
+//         param[`l_foods_tansu`][i],
+//         param[`l_foods_danbak`][i],
+//         param[`l_foods_fat`][i],
+//       ]);
+//     }
+//   }
+//   for (i = 0; i < dListLength; i++) {
+//     if (dListLength == 1) {
+//       foodsListDinner.push([
+//         param[`d_foods_when`],
+//         param[`d_foods_name`],
+//         param[`d_foods_kcal`],
+//         param[`d_foods_tansu`],
+//         param[`d_foods_danbak`],
+//         param[`d_foods_fat`],
+//       ]);
+//     } else {
+//       foodsListDinner.push([
+//         param[`d_foods_when`][i],
+//         param[`d_foods_name`][i],
+//         param[`d_foods_kcal`][i],
+//         param[`d_foods_tansu`][i],
+//         param[`d_foods_danbak`][i],
+//         param[`d_foods_fat`][i],
+//       ]);
+//     }
+//   }
+//   // console.log(foodsListM);
+//   // console.log(foodsListLunch);
+//   // console.log(foodsListDinner);
+//   db.insertUsercalendar(
+//     userid,
+//     when,
+//     foodsListM,
+//     foodsListLunch,
+//     foodsListDinner,
+//     currentKg,
+//     () => {
+//       res.redirect("/calendar");
+//     }
+//   );
+// });
+// // 캘린더 수정 클릭시 해당 데이터 삭제
+// router.get('/deleteInfo',(req,res)=>{
+//   let whenregis = req.query.id;
+//   db.deleteCalendar(whenregis,()=>{
+//     res.redirect("/calendar");
+//   })
+// })
 
 module.exports = router;
