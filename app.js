@@ -23,8 +23,10 @@ app.use(
     saveUninitialized: true, // 세션이 필요하면 세션을 실행시칸다(서버에 부담을 줄이기 위해)
     // store: new MySQLStore(config),
     cookie: {
+      maxAge: 24 * 60 * 60 * 1000, // 24시간
+      path: '/',
       httpOnly: true,
-      secure: false,
+      secure: true,
     },
     store: new FileStore(),
   })
