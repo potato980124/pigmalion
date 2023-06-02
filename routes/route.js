@@ -74,8 +74,8 @@ router.post("/loginCheck", (req, res) => {
       req.session.is_logined = true;
       req.session.userId = results[0].id;
       req.session.pw = results[0].pw;
-      req.session.cWeight = results[0].cWeight;
-      req.session.tWeight = results[0].tWeight;
+      // req.session.cWeight = results[0].cWeight;
+      // req.session.tWeight = results[0].tWeight;
       req.session.save(function(){
         res.redirect("/");
       });
