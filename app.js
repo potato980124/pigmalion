@@ -18,7 +18,7 @@ app.use(
     store: new FileStore(),
     cookie: {
       httpOnly: true,
-      secure: true
+      secure: false
     }
   })
 );
