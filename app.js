@@ -24,6 +24,7 @@ app.use(
     resave: false, // 요청이 왔을때 세션을 수정하지 않더라도 다시 저장소에 저장되도록
     saveUninitialized: true, // 세션이 필요하면 세션을 실행시칸다(서버에 부담을 줄이기 위해)
     // store: new MySQLStore(config),
+    store: new FileStore(),
   })
 );
 app.use(express.static(path.join(__dirname, 'public'))); // 익스프레스 안의 스태틱을 사용하는거다 그냥 스태틱이 아님, 얘는 경로를 일일히 세팅 하게 않하려고 써주는것 여기서 경로를 지정 해주는것
