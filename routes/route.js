@@ -77,11 +77,9 @@ router.post("/loginCheck", (req, res) => {
       req.session.pw = results[0].pw;
       req.session.cWeight = results[0].cWeight;
       req.session.tWeight = results[0].tWeight;
-      req.session.save(function(){
-        res.render("main",{
+      res.render("main",{
           is_logined: true
         });
-      });
     } else {
       res.send(
         `<script>alert('로그인 정보가 일치하지 않습니다.'); document.location.href='/login';</script>`
@@ -98,7 +96,7 @@ router.get("/calendar", (req, res) => {
     console.log(todayYearMonthDate);
     db.getUsercalendar(userid, todayYearMonthDate, (results,joinresults) => {
       res.render("calendar", {
-        is_logined: true,
+        is_logined: req.session.is_logined,
         cWeight: req.session.cWeight,
         tWeight: req.session.tWeight,
         newWeight: joinresults,
