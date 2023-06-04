@@ -98,7 +98,7 @@ router.get("/calendar", (req, res) => {
     console.log(todayYearMonthDate);
     db.getUsercalendar(userid, todayYearMonthDate, (results,joinresults) => {
       res.render("calendar", {
-        is_logined: req.session.is_logined,
+        is_logined: true,
         cWeight: req.session.cWeight,
         tWeight: req.session.tWeight,
         newWeight: joinresults,
