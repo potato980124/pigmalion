@@ -1,11 +1,11 @@
 // const bodyParser = require("body-parser");
 const express = require("express");
 const router = express.Router();
-const multer = require("multer");
+// const multer = require("multer");
 const fs = require("fs");
 const path = require("path");
 const db = require("./../db.js");
-const request = require("request");
+// const request = require("request");
 const session = require("express-session");
 const FileStore = require("session-file-store")(session); // 세션을 파일에 저장
 // const MySQLStore = require("express-mysql-session")(session);
