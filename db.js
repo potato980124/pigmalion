@@ -1,4 +1,4 @@
-var mysql = require('mysql2');
+var mysql = require('mysql');
 var connection = mysql.createConnection({
     host: 'database-1.ckqtywedccws.ap-northeast-1.rds.amazonaws.com',
     user: 'admin',
