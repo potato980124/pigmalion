@@ -152,15 +152,7 @@ function nextMonth() {
   today = new Date(todayYear, tMonth - 1);
   buildCalendar();
 }
-//fetch로 보낼 데이터 처리 ajsx로 보내려 했는데 안 됐다~~~
-// function sendWhen(todayYearMonthDate) {
-//   console.log(todayYearMonthDate);
-//   let sendData = encodeURIComponent(`${todayYearMonthDate}`);
-//   fetch(`/calendar?id=${sendData}`)
-//     // .then((response) => response.json())
-//     // .then((data) => console.log(data))
-//     .catch((error) => console.error(error));
-// }
+
 //음식검색 인풋창 클릭시
 cInputWrap.forEach((e, index) => {
   e.addEventListener("click", () => {
